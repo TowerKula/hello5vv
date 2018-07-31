@@ -39,14 +39,14 @@
 		position:fixed;
 		top:50px;
 		left:0px;
-		width:50%;
-		height:100%;
-		background:black;
+		width:100%;
+		height:50px;
+		background: #f60;
 		color:white;
 		z-index:10;
 		ul{
 			li{
-				padding:10px;
+				padding:10px;float: left;
 			}
 		}
 	}

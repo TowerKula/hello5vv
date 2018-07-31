@@ -1,13 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import home from "../components/home"
-import film from "../components/film"
-import card from "../components/card"
-import detail from "../components/detail"
+import index from '../components/index'
 
-import nowplaying from "../components/nowplaying";
-import comingsoon from "../components/comingsoon";
 //路由配置文件
 Vue.use(Router) //注册路由模块
 
@@ -15,41 +10,44 @@ export default new Router({
   mode:'history',
   routes: [
   		{
-  			path:"/home",
-  			component:home
+  			path:"/index",
+  			component:index
   		},
-  		{
-  			path:"/film",
-  			component:film,
-  			//二级路由，嵌套路由怎么写？
-  			children:[
-  				{
-  					path:"nowplaying" ,//不写成 /film/nowplaying /nowplaying
-  					component:nowplaying
-  				},
-  				{
-  					path:"comingsoon",
-  					component:comingsoon
-  				},
-  				{
-  					path:"/film",
-  					redirect:"/film/nowplaying"
-  				}
-  			]
-  		},
-  		{
-  			path:"/card",
-  			component:card
-  		},
-  		{
-  			path:"/detail/:kerwinid", //动态路由
-  			component:detail
-  		},
+      {//列表页--刘
+        path:"/channel/:nums",
+        component:channel
+      },
+      {//详情页--姜
+        path:"/video/:nums",
+        component:video
+      },
+      {//排行榜-康
+        path:"/ranking",
+        component:ranking
+      },
+      {//搜索-覃
+        path:"/search",
+        component:search
+      },
+      {//登录注册-覃
+        path:"/space",
+        component:space
+      },
+       {//注册-覃
+        path:"/register",
+        component:register
+      },
+       {//登录-覃
+        path:"/login",
+        component:login
+      },
   		//重定向
   		{
   			path:"*", //匹配所有的路径
-  			redirect:"/home"
+  			redirect:"/index"
   		}
+      
+
   ]
 })
 

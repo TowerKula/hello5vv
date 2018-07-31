@@ -1,18 +1,16 @@
 <template>
 	<nav>
 		<div class="left">
-		    <slot></slot>
-			<span>{{mytitle}}</span>
+		    logo
 		</div>
 		<div class="right">
-			<span>大连</span>
-			<i class="iconfont icon-account"></i>
+			登录注册
 		</div>
 	</nav>
 </template>
 
 <script type="text/javascript">
-	import {mapState} from "vuex";//切割状态
+	// import {mapState} from "vuex";//切割状态
 	export default {
 		name:"navbar",
 		data(){
@@ -20,14 +18,13 @@
 
 			}
 		},
-
 		// computed:{
 		// 	title(){
 		// 		return this.$store.state.mytitle
 		// 	}
 		// }
 		computed:{
-			...mapState(["mytitle"])
+			// ...mapState(["mytitle"])
 			// {mytitle：function(){return this.$store.state.mytitle}}
 		
 		}

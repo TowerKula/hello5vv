@@ -1,20 +1,13 @@
 <template>
   <div>
-
-      <navbar>
-        <i class="iconfont icon-category" @click="isShow=!isShow"></i>
-      </navbar>
-      <sidebar v-show="isShow" @kerwinevent="isShow=!isShow"></sidebar>
-     <!-- 路由容器 -->
-     <section>
        <router-view></router-view>
-     </section>
   </div>
 </template>
 
 <script>
 import navbar from "./components/common/navbar"
 import sidebar from "./components/common/sidebar"
+
 //es6 模块 导出方式
 export default {
   name: 'App',
