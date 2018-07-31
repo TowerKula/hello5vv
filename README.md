@@ -6,3 +6,4 @@ we'll use some plugins like vuex , mint-UI and router-view.
 
 edit by kong.xzdczx
 
+edit by jiang
