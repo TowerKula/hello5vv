@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div v-if="videoinfo">
 		<navbar></navbar>
 		<sidebar></sidebar>
 		<!-- <ul>
@@ -7,8 +7,9 @@
 					<img :src="info.pic">
 			</li>
 		</ul> -->
-		<img :src="videoinfo.pic" alt="">
-	  
+		<img :src="videoinfo[0].pic" alt="">
+	  	<h3>{{videoinfo[0].author}}</h3>
+	  	<p>{{videoinfo[0].description}}</p>
 	</div>
 
 
@@ -30,8 +31,8 @@
 
 			axios.get(`/x/web-interface/ranking/region?rid=20&day=7&jsonp=jsonp`).then(res=>{
 				console.log(res.data);
-				// this.videoinfo = res.data.data;
-				this.videoinfo ={pic:'http://i2.hdslb.com/bfs/archive/7d8fdc99a86aa35cd76169c768062cac687e93c5.jpg'}
+				this.videoinfo = res.data.data;
+				// this.videoinfo ={pic:'http://i2.hdslb.com/bfs/archive/7d8fdc99a86aa35cd76169c768062cac687e93c5.jpg'}
 				
 				
 			})

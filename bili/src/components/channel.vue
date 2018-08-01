@@ -5,6 +5,8 @@
 		<ul class="clearup">
 			<li >
 				<h3>channel</h3>
+				<h3>{{menuMsg}}</h3>
+
 			</li>
 		</ul>
 	  
@@ -14,6 +16,7 @@
 </template>
 
 <script type="text/javascript">
+	import {mapState} from "vuex";
 	import axios from "axios";
 	import navbar from "./common/navbar"
 	import sidebar from "./common/sidebar"
@@ -25,22 +28,20 @@
 			}
 		},
 		mounted(){
-			console.log(this.$route.params.nums);
-			//https://api.bilibili.com/x/
-			//api.bilibili.com/x/web-interface/ranking/region?rid=167&day=7&jsonp=jsonp
-			axios.get(`/x/web-interface/ranking/region?rid=167&day=7&jsonp=jsonp`).then(res=>{
-				console.log(res);
-				
-				// this.filminfo = res.data.data.film//
-				// console.log(this.filminfo.name);
 
-				// this.$store.dispatch("mytitleAction",this.filminfo.name)
-				// //dispatch("对应哪个action？"，传的值);
+			
+			axios.get(`/x/web-interface/ranking/region?rid=${this.$route.params.nums}&day=7&jsonp=jsonp`).then(res=>{				
+				this.filminfo = res.data.data
+			}).catch((error)=>{
+				console.log(error);
 			})
 		},
 		components:{
 			navbar,
 			sidebar
+		},
+		computed:{
+			...mapState(["menuMsg"])
 		}
 	}
 	

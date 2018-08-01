@@ -10,7 +10,6 @@
 </template>
 
 <script type="text/javascript">
-	// import {mapState} from "vuex";//切割状态
 	export default {
 		name:"navbar",
 		data(){
@@ -18,15 +17,7 @@
 
 			}
 		},
-		// computed:{
-		// 	title(){
-		// 		return this.$store.state.mytitle
-		// 	}
-		// }
 		computed:{
-			// ...mapState(["mytitle"])
-			// {mytitle：function(){return this.$store.state.mytitle}}
-		
 		}
 	}
 </script>
