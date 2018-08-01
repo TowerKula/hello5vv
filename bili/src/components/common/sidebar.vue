@@ -64,42 +64,85 @@
 					}],
 					isDis:true
 				},
-				2:{
+				13:{
 					key:13,
 					value:"番剧",
 					menu:[{
-						menuKey:24,
-						menuValue:'12'
+						menuKey:33,
+						menuValue:'连载动画'
 					},
 					{
-						menuKey:25,
-						menuValue:'33'
+						menuKey:32,
+						menuValue:'完结动画'
 					},
 					{
-						menuKey:47,
-						menuValue:'44'
+						menuKey:51,
+						menuValue:'资讯'
 					},
 					{
-						menuKey:27,
-						menuValue:'55'
-					}],
-					isDis:false
+						menuKey:152,
+						menuValue:'官方延伸'
+					}]
 				},
-				// 167:{
-				// 	key:167,
-				// 	value:"国创"
-				// },
-				// 3:{
-				// 	key:3,
-				// 	value:"音乐"
-				// }
+				167:{
+					key:167,
+					value:"国创",
+					menu:[{
+						menuKey:153,
+						menuValue:'国产动画'
+					},
+					{
+						menuKey:168,
+						menuValue:'国产原创相关'
+					},
+					{
+						menuKey:169,
+						menuValue:'布袋戏'
+					},
+					{
+						menuKey:170,
+						menuValue:'资讯'
+					}]
+				},
+				3:{
+					key:3,
+					value:"音乐",
+					menu:[{
+						menuKey:28,
+						menuValue:'原创音乐'
+					},
+					{
+						menuKey:31,
+						menuValue:'翻唱'
+					},
+					{
+						menuKey:30,
+						menuValue:'VOCALOID·UTAU'
+					},
+					{
+						menuKey:59,
+						menuValue:'演奏'
+					},
+					{
+						menuKey:29,
+						menuValue:'三次元音乐'
+					},
+					{
+						menuKey:54,
+						menuValue:'OP/ED/OST'
+					},
+					{
+						menuKey:130,
+						menuValue:'音乐选集'
+					}]
+				}
 			}
 		}
 		},
 
 		methods:{	
 			channelClick(data){
-				console.log(data.key)
+				console.log(data)
 				this.secondBar = data.key
 				console.log(this.secondBar)
 				this.$router.push(`/channel/${data.key}`); // /detail/222
