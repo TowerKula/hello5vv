@@ -4,7 +4,8 @@
 		    logo
 		</div>
 		<div class="right">
-			登录注册
+			<router-link to='/space' tag='div'>登录/注册</router-link>
+		
 		</div>
 	</nav>
 </template>
