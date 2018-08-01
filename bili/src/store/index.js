@@ -11,7 +11,8 @@ const store = new Vuex.Store({
 	state:{
 		//存储具体的共享状态信息
 		datalist:[], //即将上映的数据,
-		menuMsg:''
+		menuMsg:'',
+		menuNew:''
 	},
 	actions:{
 		//如果异步请求， 在这里做异步请求
@@ -35,7 +36,10 @@ const store = new Vuex.Store({
 			
 		},
 		msgMenuFn(store,payload){
-			
+			store.commit('msgMenuFnMutation',payload);
+		},
+		msgMenuNew(store,payload){
+			store.commit('msgMenuNewMutation',payload);
 		}
 
 
@@ -52,7 +56,12 @@ const store = new Vuex.Store({
 			state.datalist = payload;//datalist 共享状态受到影响
 		},
 		msgMenuFnMutation(state,payload){
+			// console.log('mutaions',payload);
 			state.menuMsg = payload;
+		},
+		msgMenuNewMutation(state,payload){
+			// console.log('mutaions',payload);
+			state.menuNew = payload;
 		}
 
 
