@@ -44,6 +44,7 @@
 				flag:''
 			}
 		},
+
 		components:{
 			navbar,
 			sidebar

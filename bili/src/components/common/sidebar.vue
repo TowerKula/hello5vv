@@ -7,25 +7,7 @@
 				<li v-for="mydata,myindex in sideMap" @click="channelClick(mydata)">
 					<p>{{mydata.value}}</p>
 			    </li>
-				<!-- <li><a class="" href="/index.html"><p>首页</p></a></li>
-				<li><a class="" href="/channel/1"><p>动画</p></a></li>
-				<li><a class="" href="/channel/13"><p>番剧</p></a></li>
-				<li><a class="" href="/channel/167"><p>国创</p></a></li>
-				<li><a class="" href="/channel/3"><p>音乐</p></a></li>
-				<li><a class="" href="/channel/129"><p>舞蹈</p></a></li>
-				<li><a class="" href="/channel/36"><p>科技</p></a></li>
-				<li><a class="" href="/channel/4"><p>游戏</p></a></li>
-				<li><a class="" href="/channel/5"><p>娱乐</p></a></li>
-				<li><a class="" href="/channel/119"><p>鬼畜</p></a></li>
-				<li><a class="" href="/channel/23"><p>电影</p></a></li>
-				<li><a class="" href="/channel/11" id="firstCur"><p>电视剧</p></a></li>
-				<li><a class="" href="/channel/177"><p>纪录片</p></a></li>
-				<li><a class="" href="/channel/181"><p>影视</p></a></li>
-				<li><a class="" href="/channel/155"><p>时尚</p></a></li>
-				<li><a class="" href="/channel/160"><p>生活</p></a></li>
-				<li><a class="" href="/channel/165"><p>广告</p></a></li>
-				<li><a class="" href="//live.bilibili.com/h5/"><p>直播</p></a></li>
-				<li><a class="" href="//h.bilibili.com/ywh/h5/home"><p>相簿</p></a></li> -->
+				
 			</ul>
 			<menubar :menuList='setSecondBar' ></menubar>
 			
