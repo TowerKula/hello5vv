@@ -1,7 +1,14 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import index from '../components/index'
+import index from '../components/index'//首页--康
+import channel from '../components/channel'//列表页--刘
+import video from '../components/video'//详情页--姜
+import ranking from '../components/ranking'//排行榜-康
+import search from '../components/search'//搜索-覃
+import space from '../components/person/space'//登录注册-覃
+import register from '../components/person/register'//注册-覃
+import login from '../components/person/login'//登录-覃
 
 //路由配置文件
 Vue.use(Router) //注册路由模块

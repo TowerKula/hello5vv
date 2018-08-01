@@ -3,20 +3,27 @@
    <transition name="bounceleft">
 	<aside>
 		<ul @click="handleClick()">
+			<router-link to="/index" tag="li" activeClass="kerwinactive">index</router-link>
 		  
-		    <router-link to="/home" tag="li" activeClass="kerwinactive">home</router-link>
+		    <router-link to="/ranking" tag="li" activeClass="kerwinactive">ranking</router-link>
 		
-		    <router-link to="/film" tag="li" activeClass="kerwinactive">film</router-link>
-		  
-		    <router-link to="/card" tag="li" activeClass="kerwinactive">card</router-link>
-		  
+		    <router-link to="/video" tag="li" activeClass="kerwinactive">video</router-link>
+
+		    <router-link to="/channel/2" tag="li" activeClass="kerwinactive">channel</router-link>
+
+		    <!-- <router-link to="/space" tag="li" activeClass="kerwinactive">space</router-link> -->	  
+		</ul>
+		<ul class="clear">
+			<li @click="channelClick(11)">
+				<h3>channel</h3>
+			</li>
 		</ul>
 	</aside>
 	</transition>
 </template>
 
 <script type="text/javascript">
-	
+// import router from "../../router/index" //路由对象
 	export default {
 		name:"sidebar",
 		data(){
@@ -27,8 +34,12 @@
 
 		methods:{
 			handleClick(){
-				//触发自定义事件kerwinevent
+				//触发自定义事件kerwineven
 				this.$emit("kerwinevent");
+			},
+			channelClick(data){
+				console.log(data)
+				// router.push(`/channel/${data}`); // /detail/222
 			}
 		}
 	}
@@ -40,7 +51,7 @@
 		top:50px;
 		left:0px;
 		width:100%;
-		height:50px;
+		height:100px;
 		background: #f60;
 		color:white;
 		z-index:10;
@@ -68,4 +79,5 @@
 	    opacity: 1;
 	  }
 	}
+	.clear{clear: both;height: 40px;}
 </style>
