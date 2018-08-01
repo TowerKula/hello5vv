@@ -41,7 +41,12 @@ const store = new Vuex.Store({
 		msgMenuNew(store,payload){
 			store.commit('msgMenuNewMutation',payload);
 		}
-
+		,avDetail(store,payload){
+			store.commit('avDetailMutation',payload);
+		},
+		numsDetail(store,payload){
+			store.commit('numsDetailMutation',payload);
+		}
 
 	},
 
@@ -62,6 +67,14 @@ const store = new Vuex.Store({
 		msgMenuNewMutation(state,payload){
 			// console.log('mutaions',payload);
 			state.menuNew = payload;
+		},
+		avDetailMutation(state,payload){
+			// console.log('mutaions',payload);
+			state.avDetail = payload;
+		},
+		numsDetailMutation(state,payload){
+			// console.log('mutaions',payload);
+			state.numsDetail = payload;
 		}
 
 

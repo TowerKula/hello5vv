@@ -39,7 +39,7 @@
 				
 				axios.get(`/archive_rank/getarchiverankbypartion?jsonp=jsonp&tid=${mydata.menuKey}&pn=1`).then(res=>{				
 					this.newInfo = res.data.data.archives
-					console.log(this.newInfo)
+					// console.log(this.newInfo)
 					this.$store.dispatch('msgMenuNew',this.newInfo);	
 					
 				}).catch((error)=>{

@@ -4,7 +4,7 @@
 		<sidebar></sidebar>
 		<h2 class="clearup">热门推荐</h2>
 		<ul >
-			<li v-for='data,index in menuMsg'>
+			<li v-for='data,index in menuMsg' @click='videoDetailClick(data)'>
 				
 				<p>
 					<img :src="reverUrl(data.pic)" width="100%"> 
@@ -58,7 +58,14 @@
 			},
 			reverUrl2(url){
 				return url+'@320w_200h.webp';
+			},
+			videoDetailClick(data){
+
+				this.$store.dispatch('avDetail',data.aid);
+				this.$store.dispatch('numsDetail',this.$route.params);	
+				this.$router.push(`/video/av${data.aid}`);
 			}
+
 		}
 	}
 	
