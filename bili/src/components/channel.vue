@@ -2,9 +2,26 @@
 	<div>
 		<navbar></navbar>
 		<sidebar></sidebar>
-		<ul class="clearup">
-			<li >
-				<h3>channel</h3>
+		<h2 class="clearup">热门推荐</h2>
+		<ul >
+			<li v-for='data,index in menuMsg'>
+				
+				<p>
+					<img :src="reverUrl(data.pic)" width="100%"> 
+					<div>{{data.title}}</div>
+				</p>
+
+			</li>
+		</ul>
+		<h2 class="clearup">最新视频</h2>
+		<ul >
+			<li v-for='data,index in menuNew'>
+				
+				<p>
+					<img :src="reverUrl2(data.pic)" width="100%"> 
+					<div>{{data.pic}}</div>
+				</p>
+
 			</li>
 		</ul>
 	  
@@ -14,6 +31,7 @@
 </template>
 
 <script type="text/javascript">
+	import {mapState} from "vuex";
 	import axios from "axios";
 	import navbar from "./common/navbar"
 	import sidebar from "./common/sidebar"
@@ -21,27 +39,26 @@
 		name:"channel",
 		data(){
 			return {
-				filminfo:null
+				channelInfo:null,
+				msgList:'',
+				flag:''
 			}
 		},
-		mounted(){
-			
-			axios.get(`/x/web-interface/ranking/region?rid=${this.$route.params.nums}&day=7&jsonp=jsonp`).then(res=>{
-				
-				
-				this.filminfo = res.data.data
-			
-				// console.log(this.filminfo.name);
 
-				// this.$store.dispatch("mytitleAction",this.filminfo.name)
-				// //dispatch("对应哪个action？"，传的值);
-			}).catch((error)=>{
-				console.log(error);
-			})
-		},
 		components:{
 			navbar,
 			sidebar
+		},
+		computed:{
+			...mapState(["menuMsg","menuNew"])
+		},
+		methods:{
+			reverUrl(url){
+				return 'https'+url.substring(4)+'@320w_200h.webp';
+			},
+			reverUrl2(url){
+				return url+'@320w_200h.webp';
+			}
 		}
 	}
 	
@@ -49,4 +66,7 @@
 
 <style scoped lang="scss">
 	.clearup{clear: both;margin-top: 200px;}
+	ul{
+		li{width: 45%;height:300px;float: left;margin: 2%;box-sizing: border-box;}
+	}
 </style>

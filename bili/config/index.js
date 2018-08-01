@@ -15,12 +15,27 @@ module.exports = {
               target: 'https://api.bilibili.com',
               host: 'api.bilibili.com',
               changeOrigin:true,
+              headers:{
+                Referer:''
+              }
               // pathRewrite: {
               //     '^/v4/api': '/v4/api'
               //   }
               headers: {
                 Referer: ''
               }
+          },
+        "/archive_rank": {
+              target: 'https://api.bilibili.com',
+              host: 'api.bilibili.com',
+              changeOrigin:true,
+              // pathRewrite: {
+              //     '^/v4/api': '/v4/api'
+              //   }
+              headers: {
+                Referer: ''
+              }
+             
           }
     },
 
