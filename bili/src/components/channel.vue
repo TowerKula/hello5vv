@@ -28,7 +28,7 @@
 			console.log(this.$route.params.nums);
 			//https://api.bilibili.com/x/
 			//api.bilibili.com/x/web-interface/ranking/region?rid=167&day=7&jsonp=jsonp
-			axios.get(`https://m.maizuo.com/v4/api/film/coming-soon?page=2&count=7`).then(res=>res.json()).then(res=>{
+			axios.get(`/x/web-interface/ranking/region?rid=167&day=7&jsonp=jsonp`).then(res=>{
 				console.log(res);
 				
 				// this.filminfo = res.data.data.film//

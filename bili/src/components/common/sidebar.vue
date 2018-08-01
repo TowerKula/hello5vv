@@ -5,7 +5,7 @@
 	
 			<ul >
 				<li><a class="" href="/index.html"><p>首页</p></a></li>
-				<li><a class="" href="/channel/1"><p>动画</p></a></li>
+				<li><a class="" href="/video/1"><p>动画</p></a></li>
 				<li><a class="" href="/channel/13"><p>番剧</p></a></li>
 				<li><a class="" href="/channel/167"><p>国创</p></a></li>
 				<li><a class="" href="/channel/3"><p>音乐</p></a></li>
