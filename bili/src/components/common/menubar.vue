@@ -23,8 +23,8 @@
 		methods:{
 			menuClick(mydata){
 				//触发自定义事件kerwineven
-				console.log(mydata.menuKey)
-				this.$emit("kerwinevent");
+				console.log(mydata.menuKey)				
+				this.$store.dispatch('msgMenuFn',mydata.menuKey);
 			}
 		},
 		props: {

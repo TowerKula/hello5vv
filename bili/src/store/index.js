@@ -10,10 +10,9 @@ Vue.use(Vuex); //注册vuex模块
 const store = new Vuex.Store({
 	state:{
 		//存储具体的共享状态信息
-		mytitle:"卖座电影",
-		datalist:[] //即将上映的数据
+		datalist:[], //即将上映的数据,
+		menuMsg:''
 	},
-
 	actions:{
 		//如果异步请求， 在这里做异步请求
 		mytitleAction(store,payload){
@@ -33,11 +32,12 @@ const store = new Vuex.Store({
 		},
 
 		myComingsoonAction(store,payload){
-			axios.get("/v4/api/film/coming-soon?page=1&count=7").then(res=>{
-				console.log(res.data);
-				store.commit("myComingsoonMutation",res.data.data.films);
-			})
+			
+		},
+		msgMenuFn(store,payload){
+			
 		}
+
 
 	},
 
@@ -45,13 +45,17 @@ const store = new Vuex.Store({
 		//修改状态 ， 并且记录状态
 		mytitleMutation(state,payload){
 			console.log("mutaions",payload);
-
 			state.mytitle = payload;//修改共享状态
 		},
 
 		myComingsoonMutation(state,payload){
 			state.datalist = payload;//datalist 共享状态受到影响
+		},
+		msgMenuFnMutation(state,payload){
+			state.menuMsg = payload;
 		}
+
+
 	}
 })
 
