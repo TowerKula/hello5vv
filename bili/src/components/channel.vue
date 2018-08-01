@@ -25,17 +25,18 @@
 			}
 		},
 		mounted(){
-			console.log(this.$route.params.nums);
-			//https://api.bilibili.com/x/
-			//api.bilibili.com/x/web-interface/ranking/region?rid=167&day=7&jsonp=jsonp
-			axios.get(`https://m.maizuo.com/v4/api/film/coming-soon?page=2&count=7`).then(res=>res.json()).then(res=>{
-				console.log(res);
+			
+			axios.get(`/x/web-interface/ranking/region?rid=${this.$route.params.nums}&day=7&jsonp=jsonp`).then(res=>{
 				
-				// this.filminfo = res.data.data.film//
+				
+				this.filminfo = res.data.data
+			
 				// console.log(this.filminfo.name);
 
 				// this.$store.dispatch("mytitleAction",this.filminfo.name)
 				// //dispatch("对应哪个action？"，传的值);
+			}).catch((error)=>{
+				console.log(error);
 			})
 		},
 		components:{
