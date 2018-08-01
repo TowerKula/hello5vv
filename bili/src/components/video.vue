@@ -1,12 +1,12 @@
 <template>
 	<div v-if="videoinfo">
-		<navbar></navbar>
-		<sidebar></sidebar>
 		<div id="box">
 			<img :src="videoinfo[0].pic" alt="">
 			<p>{{videoinfo[0].title}}</p>
 	  		<h3>{{videoinfo[0].author}}</h3>
 	  		<p>{{videoinfo[0].description}}</p>
+	  		<p>{{avDetail}}</p>
+	  		<p>{{numsDetail}}</p>
 	  	</div>
 
 	  	<ul id="list">
@@ -15,6 +15,7 @@
 	  			<p>{{info.title}}</p>
 	  		</li>
 	  	</ul>
+
 	</div>
 
 
@@ -22,8 +23,7 @@
 
 <script type="text/javascript">
 	import axios from "axios";
-	import navbar from "./common/navbar"
-	import sidebar from "./common/sidebar"
+	import {mapState} from "vuex";
 	export default {
 		name:"myvideo",
 		data(){
@@ -33,10 +33,10 @@
 			}
 		},
 		mounted(){
-			console.log(this.$route.params.nums);
+			// console.log(this.$route.params.nums);
 
 			axios.get(`/x/web-interface/ranking/region?rid=20&day=7&jsonp=jsonp`).then(res=>{
-				console.log(res.data);
+				// console.log(res.data);
 				this.videoinfo = res.data.data;
 			})
 			
@@ -46,14 +46,17 @@
 			})
 		},
 		components:{
-			navbar,
-			sidebar
+			
 		},
 		methods:{
 			reverUrl(url){
 
 				return 'https:'+url+"@320w_200h.webp";
 			}
+		},
+
+		computed:{
+			...mapState(["avDetail","numsDetail"])
 		}
 	}
 	
