@@ -2,28 +2,33 @@
 
    <transition name="bounceleft">
 	<aside>
-		<ul @click="handleClick()">
-			<router-link to="/index" tag="li" activeClass="kerwinactive">index</router-link>
-		  
-		    <router-link to="/ranking" tag="li" activeClass="kerwinactive">ranking</router-link>
-		
-		    <router-link to="/video" tag="li" activeClass="kerwinactive">video</router-link>
-
-		    <router-link to="/channel/2" tag="li" activeClass="kerwinactive">channel</router-link>
-
-		    <!-- <router-link to="/space" tag="li" activeClass="kerwinactive">space</router-link> -->	  
-		</ul>
-		<ul class="clear">
-			<li @click="channelClick(11)">
-				<h3>channel</h3>
-			</li>
-		</ul>
+	
+			<ul >
+				<li><a class="" href="/index.html"><p>首页</p></a></li>
+				<li><a class="" href="/channel/1"><p>动画</p></a></li>
+				<li><a class="" href="/channel/13"><p>番剧</p></a></li>
+				<li><a class="" href="/channel/167"><p>国创</p></a></li>
+				<li><a class="" href="/channel/3"><p>音乐</p></a></li>
+				<!-- <li><a class="" href="/channel/129"><p>舞蹈</p></a></li>
+				<li><a class="" href="/channel/36"><p>科技</p></a></li>
+				<li><a class="" href="/channel/4"><p>游戏</p></a></li>
+				<li><a class="" href="/channel/5"><p>娱乐</p></a></li>
+				<li><a class="" href="/channel/119"><p>鬼畜</p></a></li>
+				<li><a class="" href="/channel/23"><p>电影</p></a></li>
+				<li><a class="" href="/channel/11" id="firstCur"><p>电视剧</p></a></li>
+				<li><a class="" href="/channel/177"><p>纪录片</p></a></li>
+				<li><a class="" href="/channel/181"><p>影视</p></a></li>
+				<li><a class="" href="/channel/155"><p>时尚</p></a></li>
+				<li><a class="" href="/channel/160"><p>生活</p></a></li>
+				<li><a class="" href="/channel/165"><p>广告</p></a></li>
+				<li><a class="" href="//live.bilibili.com/h5/"><p>直播</p></a></li>
+				<li><a class="" href="//h.bilibili.com/ywh/h5/home"><p>相簿</p></a></li> -->
+			</ul>	
 	</aside>
 	</transition>
 </template>
 
 <script type="text/javascript">
-// import router from "../../router/index" //路由对象
 	export default {
 		name:"sidebar",
 		data(){
@@ -39,7 +44,7 @@
 			},
 			channelClick(data){
 				console.log(data)
-				// router.push(`/channel/${data}`); // /detail/222
+				router.push(`/channel/${data}`); // /detail/222
 			}
 		}
 	}
@@ -51,7 +56,7 @@
 		top:50px;
 		left:0px;
 		width:100%;
-		height:100px;
+		height:120px;
 		background: #f60;
 		color:white;
 		z-index:10;
@@ -61,7 +66,6 @@
 			}
 		}
 	}
-
 	.bounceleft-enter-active {
 	  animation: bounce-in-left .5s;
 	}
@@ -79,5 +83,5 @@
 	    opacity: 1;
 	  }
 	}
-	.clear{clear: both;height: 40px;}
+	
 </style>
