@@ -4,12 +4,15 @@
 	<aside>
 	
 			<ul >
-				<li><a class="" href="/index.html"><p>首页</p></a></li>
+				<li v-for="mydata,myindex in sideMap" @click="channelClick(mydata)">
+					<p>{{mydata.value}}</p>
+			    </li>
+				<!-- <li><a class="" href="/index.html"><p>首页</p></a></li>
 				<li><a class="" href="/channel/1"><p>动画</p></a></li>
 				<li><a class="" href="/channel/13"><p>番剧</p></a></li>
 				<li><a class="" href="/channel/167"><p>国创</p></a></li>
 				<li><a class="" href="/channel/3"><p>音乐</p></a></li>
-				<!-- <li><a class="" href="/channel/129"><p>舞蹈</p></a></li>
+				<li><a class="" href="/channel/129"><p>舞蹈</p></a></li>
 				<li><a class="" href="/channel/36"><p>科技</p></a></li>
 				<li><a class="" href="/channel/4"><p>游戏</p></a></li>
 				<li><a class="" href="/channel/5"><p>娱乐</p></a></li>
@@ -23,29 +26,93 @@
 				<li><a class="" href="/channel/165"><p>广告</p></a></li>
 				<li><a class="" href="//live.bilibili.com/h5/"><p>直播</p></a></li>
 				<li><a class="" href="//h.bilibili.com/ywh/h5/home"><p>相簿</p></a></li> -->
-			</ul>	
+			</ul>
+			<menubar :menuList='setSecondBar' ></menubar>
+			
 	</aside>
 	</transition>
 </template>
 
 <script type="text/javascript">
-	export default {
+	import menubar from "./menubar"
+	export default {		
 		name:"sidebar",
 		data(){
 			return {
 
+				secondBar:1,
+
+				sideMap:{
+				1:{
+					key:1,
+					value:"动画",
+					menu:[{
+						menuKey:24,
+						menuValue:'MAD·AMV'
+					},
+					{
+						menuKey:25,
+						menuValue:'MMD·3D'
+					},
+					{
+						menuKey:47,
+						menuValue:'短片·手书·配音'
+					},
+					{
+						menuKey:27,
+						menuValue:'综合'
+					}],
+					isDis:true
+				},
+				2:{
+					key:13,
+					value:"番剧",
+					menu:[{
+						menuKey:24,
+						menuValue:'12'
+					},
+					{
+						menuKey:25,
+						menuValue:'33'
+					},
+					{
+						menuKey:47,
+						menuValue:'44'
+					},
+					{
+						menuKey:27,
+						menuValue:'55'
+					}],
+					isDis:false
+				},
+				// 167:{
+				// 	key:167,
+				// 	value:"国创"
+				// },
+				// 3:{
+				// 	key:3,
+				// 	value:"音乐"
+				// }
 			}
+		}
 		},
 
-		methods:{
-			handleClick(){
-				//触发自定义事件kerwineven
-				this.$emit("kerwinevent");
-			},
+		methods:{	
 			channelClick(data){
-				console.log(data)
-				router.push(`/channel/${data}`); // /detail/222
+				console.log(data.key)
+				this.secondBar = data.key
+				console.log(this.secondBar)
+				this.$router.push(`/channel/${data.key}`); // /detail/222
 			}
+		},
+		computed:{
+			setSecondBar(){
+				return this.sideMap[this.secondBar].menu;
+
+			}
+		},
+		components:{
+			menubar
 		}
 	}
 </script>
@@ -56,7 +123,7 @@
 		top:50px;
 		left:0px;
 		width:100%;
-		height:120px;
+		height:100px;
 		background: #f60;
 		color:white;
 		z-index:10;
