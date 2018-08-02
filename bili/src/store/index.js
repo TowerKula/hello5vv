@@ -20,7 +20,7 @@ const store = new Vuex.Store({
 		mytitleAction(store,payload){
 			//store 当前store,
 			//payload "我不是药神"
-			console.log("actions",payload);
+			// console.log("actions",payload);
 			//基于传来的值， 进行异步请求，
 			//
 			// setTimeout(function(){
@@ -32,15 +32,12 @@ const store = new Vuex.Store({
 		
 			store.commit("mytitleMutation",payload);
 		},
-
-		myComingsoonAction(store,payload){
-			
-		},
 		msgMenuFn(store,payload){
 			store.commit('msgMenuFnMutation',payload);
 		},
 		msgMenuNew(store,payload){
 			store.commit('msgMenuNewMutation',payload);
+			
 		}
 		,avDetail(store,payload){
 			store.commit('avDetailMutation',payload);

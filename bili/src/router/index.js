@@ -52,7 +52,11 @@ export default new Router({
   		{
   			path:"*", //匹配所有的路径
   			redirect:"/index"
-  		}
+  		},
+      {
+        path:"/ranking",
+        redirect:"/ranking"
+      }
       
 
   ]
