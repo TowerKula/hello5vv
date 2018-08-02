@@ -22,6 +22,7 @@ module.exports = {
                 Referer: ''
               }
           }
+
     },
 
     // Various Dev Server settings

@@ -53,11 +53,28 @@ html,body{
   background: red;
 }
 
+.left{
+  float: left;
+}
+
+.right{
+  float: right;
+}
+
 li{
   list-style: none;
 }
 
 section{
   padding-top: 50px;
+}
+
+img{
+  display: block;
+}
+
+a{
+  text-decoration: none;
+  
 }
 </style>
