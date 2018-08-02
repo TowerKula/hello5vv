@@ -6,10 +6,10 @@
 		<ul >
 			<li v-for='data,index in menuMsg' @click='videoDetailClick(data)'>
 				
-				<p>
+				
 					<img :src="reverUrl(data.pic)" width="100%"> 
-					<div>{{data.title}}</div>
-				</p>
+					<p>{{data.title}}</p>
+				
 
 			</li>
 		</ul>
@@ -17,10 +17,10 @@
 		<ul >
 			<li v-for='data,index in menuNew' @click='videoDetailClick(data)'>
 				
-				<p>
+				
 					<img :src="reverUrl2(data.pic)" width="100%"> 
-					<div>{{data.pic}}</div>
-				</p>
+					<p>{{data.pic}}</p>
+				
 
 			</li>
 		</ul>
@@ -61,6 +61,8 @@
 			},
 			videoDetailClick(data){
 				console.log(data)
+				localStorage.setItem('myID',JSON.stringify(this.$route.params.nums))
+				localStorage.setItem('myAID',JSON.stringify(data.aid))
 				this.$store.dispatch('avDetail',data.aid);
 				this.$store.dispatch('numsDetail',this.$route.params);	
 				this.$router.push(`/video/av${data.aid}`);
@@ -74,6 +76,8 @@
 <style scoped lang="scss">
 	.clearup{clear: both;margin-top: 200px;}
 	ul{
-		li{width: 45%;height:300px;float: left;margin: 2%;box-sizing: border-box;}
+		li{width: 45%;float: left;margin: 2%;box-sizing: border-box;
+			p{height: 40px;}
+		}
 	}
 </style>
