@@ -12,7 +12,10 @@ const store = new Vuex.Store({
 		//存储具体的共享状态信息
 		datalist:[], //即将上映的数据,
 		menuMsg:'',
-		menuNew:''
+		menuNew:'',
+		avDetail:'',
+		numsDetail:''
+
 	},
 	actions:{
 		//如果异步请求， 在这里做异步请求
