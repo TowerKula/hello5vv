@@ -28,14 +28,16 @@
 			return {
 				videoinfo:null,
 				datalist:[],
-				newVideoInfo:null
+				newVideoInfo:null,
+				myID:JSON.parse(localStorage.myID),
+				myAID:JSON.parse(localStorage.myAID)
 			}
 		},
 		mounted(){
-
-			axios.get(`/x/web-interface/ranking/region?rid=${this.numsDetail.nums}&day=7&jsonp=jsonp`).then(res=>{
+			// console.log(this.myAID)
+			axios.get(`/x/web-interface/ranking/region?rid=${this.myID}&day=7&jsonp=jsonp`).then(res=>{
 				for (var i = 0; i < res.data.data.length; i++) {
-					if (res.data.data[i].aid === this.avDetail) {
+					if (res.data.data[i].aid === this.myAID) {
 						this.videoinfo=res.data.data[i];	
 						console.log(this.videoinfo);
 						return;				
@@ -43,9 +45,8 @@
 				}
 				
 				this.videoinfo = res.data.data;
-			})
-			
-			axios.get(`https://comment.bilibili.com/recommendnew,${this.avDetail}`).then(res=>{
+			});
+			axios.get(`https://comment.bilibili.com/recommendnew,${this.myAID}`).then(res=>{
 				// console.log(res.data);
 				this.datalist = res.data.data.slice(0,20);
 			})
