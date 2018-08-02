@@ -2,10 +2,25 @@
 	<div>
 		<navbar></navbar>
 		<sidebar></sidebar>
-		<ul class="clearup">
-			<li >
-				<h3>channel</h3>
-				<h3>{{menuMsg}}</h3>
+		<h2 class="clearup">热门推荐</h2>
+		<ul >
+			<li v-for='data,index in menuMsg' @click='videoDetailClick(data)'>
+				
+				<p>
+					<img :src="reverUrl(data.pic)" width="100%"> 
+					<div>{{data.title}}</div>
+				</p>
+
+			</li>
+		</ul>
+		<h2 class="clearup">最新视频</h2>
+		<ul >
+			<li v-for='data,index in menuNew' @click='videoDetailClick(data)'>
+				
+				<p>
+					<img :src="reverUrl2(data.pic)" width="100%"> 
+					<div>{{data.pic}}</div>
+				</p>
 
 			</li>
 		</ul>
@@ -24,23 +39,33 @@
 		name:"channel",
 		data(){
 			return {
-				filminfo:null
+				channelInfo:null,
+				msgList:'',
+				flag:''
 			}
 		},
-		mounted(){
-			
-			axios.get(`/x/web-interface/ranking/region?rid=${this.$route.params.nums}&day=7&jsonp=jsonp`).then(res=>{				
-				this.filminfo = res.data.data
-			}).catch((error)=>{
-				console.log(error);
-			})
-		},
+
 		components:{
 			navbar,
 			sidebar
 		},
 		computed:{
-			...mapState(["menuMsg"])
+			...mapState(["menuMsg","menuNew"])
+		},
+		methods:{
+			reverUrl(url){
+				return 'https'+url.substring(4)+'@320w_200h.webp';
+			},
+			reverUrl2(url){
+				return url+'@320w_200h.webp';
+			},
+			videoDetailClick(data){
+				console.log(data)
+				this.$store.dispatch('avDetail',data.aid);
+				this.$store.dispatch('numsDetail',this.$route.params);	
+				this.$router.push(`/video/av${data.aid}`);
+			}
+
 		}
 	}
 	
@@ -48,4 +73,7 @@
 
 <style scoped lang="scss">
 	.clearup{clear: both;margin-top: 200px;}
+	ul{
+		li{width: 45%;height:300px;float: left;margin: 2%;box-sizing: border-box;}
+	}
 </style>
