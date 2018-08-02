@@ -19,9 +19,6 @@ module.exports = {
               // pathRewrite: {
               //     '^/v4/api': '/v4/api'
               //   }
-              // headers: {
-              //   Referer: ''
-              // }
           },
         "/archive_rank": {
               target: 'https://api.bilibili.com',
