@@ -29,7 +29,7 @@ export default new Router({
         component:video
       },
       {//排行榜-康
-        path:"/ranking",
+        path:"/ranking/:nums",
         component:ranking
       },
       {//搜索-覃

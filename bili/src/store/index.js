@@ -12,7 +12,8 @@ const store = new Vuex.Store({
 		//存储具体的共享状态信息
 		datalist:[], //即将上映的数据,
 		menuMsg:'',
-		menuNew:''
+		menuNew:'',
+		rankId:null
 	},
 	actions:{
 		//如果异步请求， 在这里做异步请求
@@ -46,14 +47,17 @@ const store = new Vuex.Store({
 		},
 		numsDetail(store,payload){
 			store.commit('numsDetailMutation',payload);
+		},
+		rankIdAction(store,payload){
+			// console.log('111',payload)
+			store.commit('rankIdMutation',payload);
 		}
-
 	},
 
 	mutations:{
 		//修改状态 ， 并且记录状态
 		mytitleMutation(state,payload){
-			console.log("mutaions",payload);
+			// console.log("mutaions",payload);
 			state.mytitle = payload;//修改共享状态
 		},
 
@@ -75,6 +79,11 @@ const store = new Vuex.Store({
 		numsDetailMutation(state,payload){
 			// console.log('mutaions',payload);
 			state.numsDetail = payload;
+		}
+		,rankIdMutation(state,payload){
+			// console.log('mutaions',payload);
+			// console.log('222',payload)
+			state.rankId = payload;
 		}
 
 
