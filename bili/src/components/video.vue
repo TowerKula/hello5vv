@@ -69,10 +69,9 @@
 
 <style scoped lang="scss">
 	.clearup{clear: both;}
-	#box{margin-top: 160px;}
 	#box img{width: 100%}
-	#list{overflow: hidden;}
+	#list{overflow: hidden;border-top: 1px solid #ccc;}
 	li{width: 100%;padding: 5px;float: left;display: flex;}
 	#list li img{width: 180px;height :100px;border-radius: 5px;flex: 50%;}
-	#list li p{width:200px;float: right;flex: 50%;margin-left: 10px;}
+	#list li p{width:200px;float: right;flex: 50%;margin-left: 10px;font-size: 16px;}
 </style>
