@@ -60,4 +60,7 @@ li{
 section{
   padding-top: 50px;
 }
+a{
+  text-decoration:none;
+}
 </style>
