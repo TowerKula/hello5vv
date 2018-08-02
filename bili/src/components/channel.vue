@@ -15,7 +15,7 @@
 		</ul>
 		<h2 class="clearup">最新视频</h2>
 		<ul >
-			<li v-for='data,index in menuNew'>
+			<li v-for='data,index in menuNew' @click='videoDetailClick(data)'>
 				
 				<p>
 					<img :src="reverUrl2(data.pic)" width="100%"> 
@@ -60,7 +60,7 @@
 				return url+'@320w_200h.webp';
 			},
 			videoDetailClick(data){
-
+				console.log(data)
 				this.$store.dispatch('avDetail',data.aid);
 				this.$store.dispatch('numsDetail',this.$route.params);	
 				this.$router.push(`/video/av${data.aid}`);

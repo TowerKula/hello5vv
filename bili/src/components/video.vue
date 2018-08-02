@@ -1,12 +1,10 @@
 <template>
 	<div v-if="videoinfo">
 		<div id="box">
-			<img :src="videoinfo[0].pic" alt="">
-			<p>{{videoinfo[0].title}}</p>
-	  		<h3>{{videoinfo[0].author}}</h3>
-	  		<p>{{videoinfo[0].description}}</p>
-	  		<p>{{avDetail}}</p>
-	  		<p>{{numsDetail}}</p>
+			<img :src="videoinfo.pic" alt="">
+			<p>{{videoinfo.title}}</p>
+	  		<h3>{{videoinfo.author}}</h3>
+	  		<p>{{videoinfo.description}}</p>
 	  	</div>
 
 	  	<ul id="list">
@@ -29,19 +27,26 @@
 		data(){
 			return {
 				videoinfo:null,
-				datalist:[]
+				datalist:[],
+				newVideoInfo:null
 			}
 		},
 		mounted(){
-			// console.log(this.$route.params.nums);
 
-			axios.get(`/x/web-interface/ranking/region?rid=20&day=7&jsonp=jsonp`).then(res=>{
-				// console.log(res.data);
+			axios.get(`/x/web-interface/ranking/region?rid=${this.numsDetail.nums}&day=7&jsonp=jsonp`).then(res=>{
+				for (var i = 0; i < res.data.data.length; i++) {
+					if (res.data.data[i].aid === this.avDetail) {
+						this.videoinfo=res.data.data[i];	
+						console.log(this.videoinfo);
+						return;				
+					}
+				}
+				
 				this.videoinfo = res.data.data;
 			})
 			
-			axios.get(`https://comment.bilibili.com/recommendnew,27876145`).then(res=>{
-				console.log(res.data);
+			axios.get(`https://comment.bilibili.com/recommendnew,${this.avDetail}`).then(res=>{
+				// console.log(res.data);
 				this.datalist = res.data.data.slice(0,20);
 			})
 		},
