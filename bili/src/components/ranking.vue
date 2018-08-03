@@ -45,7 +45,10 @@
 				return 'https'+data.substring(4)+'@480w_300h.webp';
 			},
 			a(data){
-				console.log("rankId")
+				localStorage.setItem('myID',JSON.stringify(this.$route.params.nums))
+				localStorage.setItem('myAID',JSON.stringify(data.aid))
+				this.$router.push(`/video/av${data.aid}`);
+				
 			}
 			
 		},

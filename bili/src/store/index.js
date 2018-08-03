@@ -16,6 +16,7 @@ const store = new Vuex.Store({
 		avDetail:'',
 		numsDetail:'',
 		rankId:null
+		
 	},
 	actions:{
 		//如果异步请求， 在这里做异步请求
@@ -78,12 +79,13 @@ const store = new Vuex.Store({
 		numsDetailMutation(state,payload){
 			// console.log('mutaions',payload);
 			state.numsDetail = payload;
-		}
-		,rankIdMutation(state,payload){
+		},
+		rankIdMutation(state,payload){
 			// console.log('mutaions',payload);
 			// console.log('222',payload)
 			state.rankId = payload;
 		}
+
 
 
 	}

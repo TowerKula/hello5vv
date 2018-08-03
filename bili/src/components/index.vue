@@ -5,7 +5,7 @@
 
 	  <ul>
 
-	  		<li v-for="data in datalist" @click="handleClick(data.id)">
+	  		<li v-for="data in datalist" @click="handleClick(data)">
 	  			<img :src="reverUrl(data.pic)" alt="">
 	  			<p>{{data.title}}</p>
 	  		</li>
@@ -30,7 +30,7 @@
 		},
 		mounted(){
 			axios.get("/x/web-interface/ranking?rid=0&day=3&jsonp=jsonp").then(res=>{
-				console.log(res.data);
+				// console.log(res.data);
 				this.datalist = res.data.data.list
 			})
 		},
@@ -41,6 +41,22 @@
 			},
 			handleClick(data){
 				console.log(data)
+				
+
+				axios.get(`https://comment.bilibili.com/recommendnew,${data.aid}`).then(res=>{				
+					
+					console.log(res)
+					
+					
+				}).catch((error)=>{
+					console.log(error);
+				});
+
+
+				localStorage.setItem('myID',28)
+				localStorage.setItem('myAID',JSON.stringify(data.aid))
+				this.$router.push(`/video/av${data.aid}`);
+
 			}
 		},
 		components:{
