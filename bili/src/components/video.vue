@@ -1,12 +1,18 @@
 <template>
 	<div v-if="videoinfo">
-		
-		<img :src="videoinfo.pic" alt="">
+		<div id="videoControl">
+			<img :src="videoinfo.pic" alt="">
+			<p></p>
+			<span class="top">av{{videoinfo.aid}}</span>
+			<span class="left">{{videoinfo.duration}}</span>
+			<span class="right iconfont icon-bofang"></span>
+		</div>
 		<div id="box">
 			<h1>可试看6分钟，APP内打开看全片</h1>
-			<h2>{{videoinfo.title}}</h2>
-	  		<h3>{{videoinfo.author}} <span>{{times(videoinfo.play)}}万次观看 </span><span>{{videoinfo.video_review}}弹幕</span><span>{{createDate(videoinfo.create)}}</span></h3>
+			<h2><span>{{videoinfo.title}}</span><a class="iconfont icon-down"></a></h2>
+	  		<h3>{{videoinfo.author}}<span>{{times(videoinfo.play)}}万次观看</span><span>{{videoinfo.video_review}}弹幕</span><span>{{createDate(videoinfo.create)}}</span></h3>
 	  		<h4>{{videoinfo.description}}</h4>
+	  		<p><span class="iconfont icon-shoucang first"></span> 收藏 <span class="iconfont icon-huancun"></span> 缓存 <span class="iconfont icon-zanzhuanhuan0101"></span> 分享</p>
 	  	</div>
 
 	  	<ul id="list">
@@ -18,7 +24,7 @@
 	  			<div>
 	  				<h5>{{info.title}}</h5>
 	  				<h6>{{times(info.stat.view)}}万次观看 · {{info.stat.danmaku}}弹幕</h6>
-	  				<p>App 内打开</p>
+	  				<span>App 内打开</span>
 	  			</div>
 	  		</li>
 	  	</ul>
@@ -88,7 +94,8 @@
 				var dd = days.getDate();
 				var reg	= mm + '-' + dd;
 				return reg;
-			}
+			},
+
 
 		},
 
@@ -103,13 +110,23 @@
 <style scoped lang="scss">
 
 	.clearup{clear: both;}
-	img{width: 100%}
+	#videoControl{position: relative;}
+	#videoControl p{position: absolute;top:0;left:0;right:0;bottom:0;background:rgba(60,60,60,0.8);z-index: 1;}
+	#videoControl img{width: 100%;}
+	#videoControl .top{position:absolute;top: 10px;left: 50%;transform: translate(-50%);color: #fff;font-size: 18px;z-index: 2;}
+	#videoControl .left{position: absolute;bottom: 20px;left: 10px;display: inline-block;height: 20px;width: 80px;background:rgba(33,33,33,.3);color: white;font-size: 16px;text-align: center;line-height: 20px;border-radius: 2px;z-index: 2;}
+	#videoControl .right{position: absolute;bottom: 20px;right: 10px;font-size: 50px;color: #ccc;z-index: 2;}
 	#box {padding: 10px;}
 	#box h1{background: #fb7299;width:100%;height: 50px;font-size: 20px;color: #fff;line-height: 50px;text-align: center; border-radius: 20px;}
-	#box h2{font-size: 16px;color: #000;margin-top: 10px;}
+	#box h2{margin-top: 10px;display: flex;justify-content:space-between;}
+	#box h2 span{font-size: 16px;color: #000;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;width: 80%;}
+	#box h2 a{float: right;}
 	#box h3{font-size: 14px;color: #111;margin-top: 10px;}
 	#box h3 span{font-size: 14px;color: #999;margin-left: 10px;}
 	#box h4{font-size: 14px;color: #999;margin-top: 10px;}
+	#box p{margin-top: 10px;color: #aaa; font-size: 12px;}
+	#box p span{margin-left: 25px;}
+	#box p .first{margin-left: 0;}
 
 	#list{overflow: hidden;border-top: 1px solid #eee;padding: 10px;}
 	#list li{width: 100%;padding: 5px;float: left;display: flex;}
@@ -119,5 +136,5 @@
 	#list li div{margin-left: 10px;flex: 65%;height: 80px;position: relative;}
 	#list li div h5{font-size: 14px;height: 40px;overflow: hidden;}
 	#list li div h6{font-size: 12px;color: #999;height: 15px;text-align: 15px;}
-	#list li div p{font-size: 10px;color: #fb7299;border: 1px solid #fb7299;padding: 2px;width: 60px;height:15px;text-align: center;border-radius: 2px;line-height: 15px;position: absolute;bottom: 0;}
+	#list li div span{font-size: 10px;color: #fb7299;border: 1px solid #fb7299;padding: 2px;height:15px;text-align: center;border-radius: 2px;line-height: 15px;position: absolute;bottom: 0;}
 </style>
