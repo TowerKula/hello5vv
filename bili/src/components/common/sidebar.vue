@@ -17,6 +17,7 @@
 
 <script type="text/javascript">
 	import menubar from "./menubar"
+	import axios from "axios";
 	export default {		
 		name:"sidebar",
 		data(){
@@ -25,10 +26,18 @@
 				secondBar:1,
 
 				sideMap:{
+				0:{
+					key:"index",
+					value:"首页"
+				},
 				1:{
 					key:1,
 					value:"动画",
 					menu:[{
+						menuKey:1,
+						menuValue:'推荐'
+					},
+					{
 						menuKey:24,
 						menuValue:'MAD·AMV'
 					},
@@ -117,7 +126,10 @@
 						menuKey:130,
 						menuValue:'音乐选集'
 					}]
-				}
+				},
+				hotInfo:'',
+				newInfo:'',
+
 			}
 		}
 		},
@@ -125,9 +137,34 @@
 		methods:{	
 			channelClick(data){
 				console.log(data)
-				this.secondBar = data.key
-				console.log(this.secondBar)
-				this.$router.push(`/channel/${data.key}`); // /detail/222
+				if (data.key==='index') {
+					this.$router.push(`/index`);
+				}else{
+
+
+					this.secondBar = data.key
+					this.$router.push(`/channel/${data.key}`);
+					// axios.get(`/x/web-interface/ranking/region?rid=${this.$route.params.nums}&day=7&jsonp=jsonp`).then(res=>{				
+					// 	this.hotInfo = res.data.data.slice(0,4);
+					// 	// console.log(this.hotInfo)
+					// 	this.$store.dispatch('msgMenuFn',this.hotInfo);	
+						
+					// }).catch((error)=>{
+					// 	console.log(error);
+					// });
+
+					
+					// axios.get(`/archive_rank/getarchiverankbypartion?jsonp=jsonp&tid=${this.$route.params.nums}&pn=1`).then(res=>{				
+					// 	this.newInfo = res.data.data.archives
+					// 	// console.log(this.newInfo)
+					// 	this.$store.dispatch('msgMenuNew',this.newInfo);	
+						
+					// }).catch((error)=>{
+					// 	console.log(error);
+					// });
+
+
+				}
 			}
 		},
 		computed:{

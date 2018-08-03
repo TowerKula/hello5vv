@@ -53,6 +53,14 @@ html,body{
   background: red;
 }
 
+.left{
+  float: left;
+}
+
+.right{
+  float: right;
+}
+
 li{
   list-style: none;
 }
@@ -67,5 +75,10 @@ h1,h2,h3,h4,h5,h6,b{font-weight: normal;}
 
 a{
   text-decoration:none;
+  }
+img{
+  display: block;
 }
+
+
 </style>

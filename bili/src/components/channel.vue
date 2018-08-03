@@ -66,13 +66,42 @@
 				channelInfo:null,
 				msgList:'',
 				flag:'',
-				moreNum:0,
+				moreNum:1,
 				menuNews:[],
-				x:0
+				nowPage:0,
+				newInfo:'',
+				hotInfo:''
+				
 			}
 		},
 		mounted(){
-
+				axios.get(`/x/web-interface/ranking/region?rid=${this.$route.params.nums}&day=7&jsonp=jsonp`).then(res=>{				
+					this.hotInfo = res.data.data.slice(0,4);
+					// console.log(this.hotInfo)
+					this.$store.dispatch('msgMenuFn',this.hotInfo);	
+					
+				}).catch((error)=>{
+					console.log(error);
+				})
+				
+					axios.get(`/archive_rank/getarchiverankbypartion?jsonp=jsonp&tid=${this.$route.params.nums}&pn=1`).then(res=>{				
+						this.newInfo = res.data.data.archives
+						
+						this.$store.dispatch('msgMenuNew',this.newInfo);	
+						
+					}).catch((error)=>{
+							axios.get(`/archive_rank/getarchiverankbypartion?jsonp=jsonp&tid=${this.$route.params.nums}&pn=1`).then(res=>{				
+								this.newInfo = res.data.data.archives
+								
+								this.$store.dispatch('msgMenuNew',this.newInfo);	
+								
+							}).catch((error)=>{
+								
+								console.log(error);
+							})	
+					})
+				
+				
 		},
 		components:{
 			navbar,
@@ -80,27 +109,20 @@
 		},
 		computed:{
 			...mapState(["menuMsg","menuNew"]),
-			// menuNew(){
-			// 	return this.$store.state.menuNew
-			// }
+			
 			getMsg(){	
-
-				console.log('y='+this.$route.params.nums)
-				console.log('x='+this.x)
-				
-				if (this.x != this.$route.params.nums) {
+				if (this.nowPage != this.$route.params.nums) {
 						this.menuNews = [];
-						var self = this
-						setTimeout(function () {
-							self.x = self.$route.params.nums;
-						},100)
+						this.moreNum = 1
+						this.nowPage = this.$route.params.nums;
+						
 					document.documentElement.scrollTop = document.body.scrollTop = 0;		
 				}
 						
 				if(this.menuNews.length==0){
 					this.menuNews = this.menuNew;
 				}
-				console.log('xiu',this.menuNews.length)
+				// console.log('xiu',this.menuNews.length)
 				return this.menuNews ;
 			}
 
@@ -123,8 +145,9 @@
 				this.$router.push(`/video/av${data.aid}`);
 			},
 			moreClick(){
-				console.log(2222)
-				this.moreNum++				
+				// console.log(2222)
+				++this.moreNum
+				console.log(this.moreNum)			
 				axios.get(`/archive_rank/getarchiverankbypartion?jsonp=jsonp&tid=${this.$route.params.nums}&pn=${this.moreNum}`).then(res=>{				
 
 					this.menuNews=[...(this.menuNews),...(res.data.data.archives)]

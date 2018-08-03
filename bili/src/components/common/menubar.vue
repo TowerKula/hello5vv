@@ -18,14 +18,17 @@
 		data(){
 			return {
 				hotInfo:'',
-				newInfo:''
+				newInfo:'',
+				myID:''
 			}
 		},
-
+		mounted(){
+				
+		},
 		methods:{
 			menuClick(mydata){
 				//触发自定义事件kerwineven	
-				
+				localStorage.setItem('myID',JSON.stringify(this.$route.params.nums))
 				
 				this.$router.push(`/channel/${mydata.menuKey}`)		
 
