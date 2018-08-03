@@ -19,7 +19,7 @@
 				
 				<p>
 					<img :src="reverUrl2(data.pic)" width="100%"> 
-					<div>{{data.pic}}</div>
+					<!-- <div>{{data.pic}}</div> -->
 				</p>
 
 			</li>

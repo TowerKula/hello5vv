@@ -117,7 +117,64 @@
 						menuKey:130,
 						menuValue:'音乐选集'
 					}]
+				},
+				9:{
+					key:3,
+					value:"测试1",
+					menu:[{
+						menuKey:28,
+						menuValue:'原创音乐'
+					},
+					{
+						menuKey:31,
+						menuValue:'翻唱'
+					},
+					{
+						menuKey:30,
+						menuValue:'VOCALOID·UTAU'
+					},
+					{
+						menuKey:59,
+						menuValue:'演奏'
+					},
+					{
+						menuKey:29,
+						menuValue:'三次元音乐'
+					},
+					{
+						menuKey:54,
+						menuValue:'OP/ED/OST'
+					},
+					{
+						menuKey:130,
+						menuValue:'音乐选集'
+					},
+					{
+						menuKey:31,
+						menuValue:'翻唱'
+					},
+					{
+						menuKey:30,
+						menuValue:'VOCALOID·UTAU'
+					},
+					{
+						menuKey:59,
+						menuValue:'演奏'
+					},
+					{
+						menuKey:29,
+						menuValue:'三次元音乐'
+					},
+					{
+						menuKey:54,
+						menuValue:'OP/ED/OST'
+					},
+					{
+						menuKey:130,
+						menuValue:'音乐选集'
+					}]
 				}
+				
 			}
 		}
 		},
