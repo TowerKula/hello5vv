@@ -13,7 +13,11 @@ const store = new Vuex.Store({
 		datalist:[], //即将上映的数据,
 		menuMsg:'',
 		menuNew:'',
-		rankId:null
+		avDetail:'',
+		numsDetail:'',
+		rankId:null,
+		sideNum:null//sidebar的点击key值
+		
 	},
 	actions:{
 		//如果异步请求， 在这里做异步请求
@@ -48,6 +52,9 @@ const store = new Vuex.Store({
 		rankIdAction(store,payload){
 			// console.log('111',payload)
 			store.commit('rankIdMutation',payload);
+		},
+		sideNumAction(store,payload){
+			store.commit('sideNumMutation',payload);
 		}
 	},
 
@@ -76,12 +83,17 @@ const store = new Vuex.Store({
 		numsDetailMutation(state,payload){
 			// console.log('mutaions',payload);
 			state.numsDetail = payload;
-		}
-		,rankIdMutation(state,payload){
+		},
+		rankIdMutation(state,payload){
 			// console.log('mutaions',payload);
 			// console.log('222',payload)
 			state.rankId = payload;
+		},
+		sideNumMutation(state,payload){
+			// console.log(payload)
+			state.sideNum = payload;
 		}
+
 
 
 	}

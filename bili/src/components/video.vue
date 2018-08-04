@@ -52,6 +52,7 @@
 		mounted(){
 			// console.log(this.myAID)
 			axios.get(`/x/web-interface/ranking/region?rid=${this.myID}&day=7&jsonp=jsonp`).then(res=>{
+				console.log(res.data)
 				for (var i = 0; i < res.data.data.length; i++) {
 					if (res.data.data[i].aid === this.myAID) {
 						this.videoinfo=res.data.data[i];	

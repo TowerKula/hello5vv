@@ -17,6 +17,7 @@
 
 <script type="text/javascript">
 	import menubar from "./menubar"
+	import axios from "axios";
 	export default {		
 		name:"sidebar",
 		data(){
@@ -25,109 +26,151 @@
 				secondBar:1,
 
 				sideMap:{
-				1:{
-					key:1,
-					value:"动画",
-					menu:[{
-						menuKey:24,
-						menuValue:'MAD·AMV'
+					0:{
+						key:"index",
+						value:"首页"
 					},
-					{
-						menuKey:25,
-						menuValue:'MMD·3D'
+					1:{
+						key:1,
+						value:"动画",
+						menu:[{
+							menuKey:1,
+							menuValue:'推荐'
+						},
+						{
+							menuKey:24,
+							menuValue:'MAD·AMV'
+						},
+						{
+							menuKey:25,
+							menuValue:'MMD·3D'
+						},
+						{
+							menuKey:47,
+							menuValue:'短片·手书·配音'
+						},
+						{
+							menuKey:27,
+							menuValue:'综合'
+						}],
+						isDis:true
 					},
-					{
-						menuKey:47,
-						menuValue:'短片·手书·配音'
+					13:{
+						key:13,
+						value:"番剧",
+						menu:[{
+							menuKey:13,
+							menuValue:'推荐'
+						},
+						{
+							menuKey:33,
+							menuValue:'连载动画'
+						},
+						{
+							menuKey:32,
+							menuValue:'完结动画'
+						},
+						{
+							menuKey:51,
+							menuValue:'资讯'
+						},
+						{
+							menuKey:152,
+							menuValue:'官方延伸'
+						}]
 					},
-					{
-						menuKey:27,
-						menuValue:'综合'
-					}],
-					isDis:true
+					167:{
+						key:167,
+						value:"国创",
+						menu:[
+						{
+							menuKey:167,
+							menuValue:'推荐'
+						},
+						{
+							menuKey:153,
+							menuValue:'国产动画'
+						},
+						{
+							menuKey:168,
+							menuValue:'国产原创相关'
+						},
+						{
+							menuKey:169,
+							menuValue:'布袋戏'
+						},
+						{
+							menuKey:170,
+							menuValue:'资讯'
+						}]
+					},
+					3:{
+						key:3,
+						value:"音乐",
+						menu:[{
+							menuKey:3,
+							menuValue:'推荐'
+						},
+						{
+							menuKey:28,
+							menuValue:'原创音乐'
+						},
+						{
+							menuKey:31,
+							menuValue:'翻唱'
+						},
+						{
+							menuKey:30,
+							menuValue:'VOCALOID·UTAU'
+						},
+						{
+							menuKey:59,
+							menuValue:'演奏'
+						},
+						{
+							menuKey:29,
+							menuValue:'三次元音乐'
+						},
+						{
+							menuKey:54,
+							menuValue:'OP/ED/OST'
+						},
+						{
+							menuKey:130,
+							menuValue:'音乐选集'
+						}]
+
+					}
 				},
-				13:{
-					key:13,
-					value:"番剧",
-					menu:[{
-						menuKey:33,
-						menuValue:'连载动画'
-					},
-					{
-						menuKey:32,
-						menuValue:'完结动画'
-					},
-					{
-						menuKey:51,
-						menuValue:'资讯'
-					},
-					{
-						menuKey:152,
-						menuValue:'官方延伸'
-					}]
-				},
-				167:{
-					key:167,
-					value:"国创",
-					menu:[{
-						menuKey:153,
-						menuValue:'国产动画'
-					},
-					{
-						menuKey:168,
-						menuValue:'国产原创相关'
-					},
-					{
-						menuKey:169,
-						menuValue:'布袋戏'
-					},
-					{
-						menuKey:170,
-						menuValue:'资讯'
-					}]
-				},
-				3:{
-					key:3,
-					value:"音乐",
-					menu:[{
-						menuKey:28,
-						menuValue:'原创音乐'
-					},
-					{
-						menuKey:31,
-						menuValue:'翻唱'
-					},
-					{
-						menuKey:30,
-						menuValue:'VOCALOID·UTAU'
-					},
-					{
-						menuKey:59,
-						menuValue:'演奏'
-					},
-					{
-						menuKey:29,
-						menuValue:'三次元音乐'
-					},
-					{
-						menuKey:54,
-						menuValue:'OP/ED/OST'
-					},
-					{
-						menuKey:130,
-						menuValue:'音乐选集'
-					}]
+				hotInfo:'',
+				newInfo:''
+
+
 				}
-			}
-		}
+				
+
+			
+		
 		},
 
 		methods:{	
 			channelClick(data){
-				console.log(data)
-				this.secondBar = data.key
-				console.log(this.secondBar)
-				this.$router.push(`/channel/${data.key}`); // /detail/222
+				// console.log(data)
+				if (data.key==='index') {
+					this.$router.push(`/index`);
+				}else{
+					this.secondBar = data.key
+					this.$router.push(`/channel/${data.key}`);
+					axios.get(`/x/web-interface/ranking/region?rid=${this.$route.params.nums}&day=7&jsonp=jsonp`).then(res=>{				
+						this.hotInfo = res.data.data.slice(0,4);
+						// console.log(this.hotInfo)
+						this.$store.dispatch('msgMenuFn',this.hotInfo);	
+						this.$store.dispatch('sideNumAction',data.key)
+					}).catch((error)=>{
+						console.log(error);
+					});
+
+				}
 			}
 		},
 		computed:{
