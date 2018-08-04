@@ -3,49 +3,56 @@
 		<navbar></navbar>
 		<sidebar></sidebar>
 		<div class="main">
-			<h2 class="title">热门推荐</h2>
-			<ul >
-				<li v-for='data,index in menuMsg' @click='videoDetailClick(data)'>				
-						<div class="play">
-							<img :src="reverUrl(data.pic)" width="100%">
-							<div class="play-bottom">
-								<p class="playIcon">
-									<i class="iconfont icon-shipin"></i> 
-									<span class="play-nums">{{data.play}}</span>
-								</p>
-								<p class="danmuIcon">
-									<i class="iconfont icon-cloud-bullet_screen"></i> 
-									<span class="play-danmu">{{data.video_review}}</span>
-								</p>
-							</div>						
-						</div>
-						
-						<p>{{data.title}}</p>
-					
 
-				</li>
-			</ul>
-			<h2 class="title newVideo">最新视频</h2>
-			<ul class="newList">
-				<li v-for='data,index in getMsg' @click='videoDetailClick(data)'>								
-						<div class="play">
-							<img :src="reverUrl(data.pic)" width="100%">
-							<div class="play-bottom">
-								<p class="playIcon">
-									<i class="iconfont icon-shipin"></i> 
-									<span class="play-nums">{{data.play}}</span>
-								</p>
-								<p class="danmuIcon">
-									<i class="iconfont icon-cloud-bullet_screen"></i> 
-									<span class="play-danmu">{{data.video_review}}</span>
-								</p>
-							</div>						
-						</div>
-					
-						<p>{{data.title}}</p>
-				</li>
-			</ul>
-			<div @click='moreClick()' class="add">点击加载</div>
+			<div class="recommend" v-if="" >
+				22222
+			</div>
+			<div class="other">
+				<h2 class="title">热门推荐</h2>
+				<ul >
+					<li v-for='data,index in menuMsg' @click='videoDetailClick(data)'>				
+							<div class="play">
+								<img :src="reverUrl(data.pic)" width="100%">
+								<div class="play-bottom">
+									<p class="playIcon">
+										<i class="iconfont icon-shipin"></i> 
+										<span class="play-nums">{{data.play}}</span>
+									</p>
+									<p class="danmuIcon">
+										<i class="iconfont icon-cloud-bullet_screen"></i> 
+										<span class="play-danmu">{{data.video_review}}</span>
+									</p>
+								</div>						
+							</div>
+							
+							<p>{{data.title}}</p>
+						
+
+					</li>
+				</ul>
+				<h2 class="title newVideo">最新视频</h2>
+				<ul class="newList">
+					<li v-for='data,index in getMsg' @click='videoDetailClick(data)'>								
+							<div class="play">
+								<img :src="reverUrl(data.pic)" width="100%">
+								<div class="play-bottom">
+									<p class="playIcon">
+										<i class="iconfont icon-shipin"></i> 
+										<span class="play-nums">{{data.play}}</span>
+									</p>
+									<p class="danmuIcon">
+										<i class="iconfont icon-cloud-bullet_screen"></i> 
+										<span class="play-danmu">{{data.video_review}}</span>
+									</p>
+								</div>						
+							</div>
+						
+							<p>{{data.title}}</p>
+					</li>
+				</ul>
+				<div @click='moreClick()' class="add">点击加载</div>
+			</div>
+			
 		</div>
 		
 	  
@@ -108,7 +115,7 @@
 			sidebar
 		},
 		computed:{
-			...mapState(["menuMsg","menuNew"]),
+			...mapState(["menuMsg","menuNew","sideNum"]),
 			
 			getMsg(){	
 				if (this.nowPage != this.$route.params.nums) {
@@ -144,8 +151,7 @@
 				this.$store.dispatch('numsDetail',this.$route.params);	
 				this.$router.push(`/video/av${data.aid}`);
 			},
-			moreClick(){
-				// console.log(2222)
+			moreClick(){				
 				++this.moreNum
 				console.log(this.moreNum)			
 				axios.get(`/archive_rank/getarchiverankbypartion?jsonp=jsonp&tid=${this.$route.params.nums}&pn=${this.moreNum}`).then(res=>{				
@@ -156,6 +162,11 @@
 					console.log(error);
 				});
 			},
+			recommend(){
+				console.log(sideNum)
+				return true
+			}
+
 
 
 		}

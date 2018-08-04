@@ -59,6 +59,10 @@
 					key:13,
 					value:"番剧",
 					menu:[{
+						menuKey:13,
+						menuValue:'推荐'
+					},
+					{
 						menuKey:33,
 						menuValue:'连载动画'
 					},
@@ -78,7 +82,12 @@
 				167:{
 					key:167,
 					value:"国创",
-					menu:[{
+					menu:[
+					{
+						menuKey:167,
+						menuValue:'推荐'
+					},
+					{
 						menuKey:153,
 						menuValue:'国产动画'
 					},
@@ -99,6 +108,10 @@
 					key:3,
 					value:"音乐",
 					menu:[{
+						menuKey:3,
+						menuValue:'推荐'
+					},
+					{
 						menuKey:28,
 						menuValue:'原创音乐'
 					},
@@ -136,33 +149,20 @@
 
 		methods:{	
 			channelClick(data){
-				console.log(data)
+				// console.log(data)
 				if (data.key==='index') {
 					this.$router.push(`/index`);
 				}else{
-
-
 					this.secondBar = data.key
 					this.$router.push(`/channel/${data.key}`);
-					// axios.get(`/x/web-interface/ranking/region?rid=${this.$route.params.nums}&day=7&jsonp=jsonp`).then(res=>{				
-					// 	this.hotInfo = res.data.data.slice(0,4);
-					// 	// console.log(this.hotInfo)
-					// 	this.$store.dispatch('msgMenuFn',this.hotInfo);	
-						
-					// }).catch((error)=>{
-					// 	console.log(error);
-					// });
-
-					
-					// axios.get(`/archive_rank/getarchiverankbypartion?jsonp=jsonp&tid=${this.$route.params.nums}&pn=1`).then(res=>{				
-					// 	this.newInfo = res.data.data.archives
-					// 	// console.log(this.newInfo)
-					// 	this.$store.dispatch('msgMenuNew',this.newInfo);	
-						
-					// }).catch((error)=>{
-					// 	console.log(error);
-					// });
-
+					axios.get(`/x/web-interface/ranking/region?rid=${this.$route.params.nums}&day=7&jsonp=jsonp`).then(res=>{				
+						this.hotInfo = res.data.data.slice(0,4);
+						// console.log(this.hotInfo)
+						this.$store.dispatch('msgMenuFn',this.hotInfo);	
+						this.$store.dispatch('sideNumAction',data.key)
+					}).catch((error)=>{
+						console.log(error);
+					});
 
 				}
 			}
