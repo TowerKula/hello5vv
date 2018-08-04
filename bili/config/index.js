@@ -15,13 +15,13 @@ module.exports = {
               target: 'https://api.bilibili.com',
               host: 'api.bilibili.com',
               changeOrigin:true,
-              headers:{
-                Referer:''
-              }
+              
               // pathRewrite: {
               //     '^/v4/api': '/v4/api'
               //   }
-            
+              headers:{
+                Referer:''
+              }
           },
         "/archive_rank": {
               target: 'https://api.bilibili.com',
@@ -30,11 +30,23 @@ module.exports = {
               // pathRewrite: {
               //     '^/v4/api': '/v4/api'
               //   }
+
              headers:{
                 Referer:''
               }
              
           }
+
+
+          },
+        "/api/proxy": {
+              target: 'http://172.18.12.14:3000',
+              host: '172.18.12.14',
+              changeOrigin:true,
+          },
+
+
+
 
     },
 
@@ -92,4 +104,4 @@ module.exports = {
     // Set to `true` or `false` to always turn it on or off
     bundleAnalyzerReport: process.env.npm_config_report
   }
-}
+

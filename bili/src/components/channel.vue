@@ -2,6 +2,7 @@
 	<div>
 		<navbar></navbar>
 		<sidebar></sidebar>
+
 		<div class="main">
 
 			<div class="recommend" v-if="" >

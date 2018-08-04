@@ -11,6 +11,7 @@
 			<a href="/space" class="iconfont icon-weixindenglu"></a>
 
 			<a href="javascript:alert('本网站现在不开放下载,充值之后再议')" class="load">下载 App</a>
+
 		</div>
 	</nav>
 </template>
