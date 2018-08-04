@@ -1,11 +1,10 @@
 <template>
 	<nav>
 		<ul>
-			<li v-for="data in ranking" @click="handleClick(data)" class="left">{{data.value}}</li>
+			<li v-for="data in ranking" @click="handleClick(data)">{{data.value}}</li>
 		</ul>
 	</nav>
 </template>
-
 <script type="text/javascript">
 	import axios from "axios"
 	export default {
@@ -57,30 +56,30 @@
 						key:4,
 						value:"游戏"
 					},
-					23:{
-						key:23,
-						value:"电影"
-					},
-					11:{
-						key:11,
-						value:"电视剧"
-					},
-					117:{
-						key:117,
-						value:"纪录片"
-					},
-					181:{
-						key:181,
-						value:"影视"
-					},
-					155:{
-						key:155,
-						value:"时尚"
-					},
-					160:{
-						key:160,
-						value:"生活"
-					}
+					// 23:{
+					// 	key:23,
+					// 	value:"电影"
+					// },
+					// 11:{
+					// 	key:11,
+					// 	value:"电视剧"
+					// },
+					// 117:{
+					// 	key:117,
+					// 	value:"纪录片"
+					// },
+					// 181:{
+					// 	key:181,
+					// 	value:"影视"
+					// },
+					// 155:{
+					// 	key:155,
+					// 	value:"时尚"
+					// },
+					// 160:{
+					// 	key:160,
+					// 	value:"生活"
+					// }
 				}
 			}
 		},
@@ -105,14 +104,17 @@
 	nav{
 		position:fixed;
 		left:0;
-		top:40px;
+		top:35px;
 		width:100%;
 		height:50px;
 		line-height:50px;
-		border-bottom: 1px solid #ccc;
+		background-color: #f60;
+		z-index: 999;
 		ul{
 			li{
-
+				display: inline-block;
+				width: 10%;
+				text-align: center;
 			}
 		}
 	}

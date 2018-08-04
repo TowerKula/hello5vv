@@ -55,7 +55,7 @@ export default new Router({
   		},
       {
         path:"/ranking",
-        redirect:"/ranking"
+        redirect:"/ranking/0"
       }
       
 
