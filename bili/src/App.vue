@@ -71,7 +71,6 @@ section{
 }
 
 
-body,h1,h2,h3,h4,h5,h6,dl,ol,ul,li,a,p,img,figure,figcaption,dd,dt,input{ margin:0; padding:0; }
 h1,h2,h3,h4,h5,h6,b{font-weight: normal;}
 
 a{

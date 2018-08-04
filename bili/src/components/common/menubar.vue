@@ -2,37 +2,63 @@
 
    <transition name="bounceleft">
 	<aside>
-			<ul >
-				<li v-for="mydata,myindex in menuList" @click="menuClick(mydata)"> 
-					<p>{{mydata.menuValue}}</p>
-			    </li>			
-			</ul>	
+
+			<swiper :options="swiperOption" ref="mySwiper" >
+			    <swiper-slide v-for="(mydata,myindex) in menuList" :key="mydata.menuKey" > 
+					{{mydata.menuValue}}
+			    </swiper-slide>
+			  </swiper>
 	</aside>
 	</transition>
 </template>
 
 <script type="text/javascript">
 	import axios from "axios";
+	import { swiper, swiperSlide } from 'vue-awesome-swiper';
+	import 'swiper/dist/css/swiper.css' ;
+	let vm = null;
 	export default {
 		name:"menubar",
 		data(){
 			return {
 				hotInfo:'',
-				newInfo:''
+				newInfo:'',
+
+				myID:'',
+
+				swiperOption: {
+				          // some swiper options/callbacks
+				          slidesPerView: '4',
+      					  spaceBetween: 10,
+      					  on:{
+      					  	click:function(){
+      					  		// console.log('the this',this.clickedIndex);
+      					  		vm.menuClick(vm.menuList[this.clickedIndex]);
+      					  	}
+      					  }
+				},
+				test:'333'
+
 			}
 		},
-
+		mounted(){
+				
+		},
 		methods:{
 			menuClick(mydata){
+				console.log(mydata.menuValue)
 				//触发自定义事件kerwineven	
-				
-				
-				this.$router.push(`/channel/${mydata.menuKey}`)		
-
+				if (mydata.menuValue === "推荐") {
+					this.$router.push(`/recommend/${mydata.menuKey}`)	
+				}else{
+					localStorage.setItem('myID',JSON.stringify(this.$route.params.nums))
+					this.$router.push(`/channel/${mydata.menuKey}`)	
+				}					
 				axios.get(`/x/web-interface/ranking/region?rid=${mydata.menuKey}&day=7&jsonp=jsonp`).then(res=>{				
 					this.hotInfo = res.data.data.slice(0,4);
 					// console.log(this.hotInfo)
 					this.$store.dispatch('msgMenuFn',this.hotInfo);	
+
 					
 				}).catch((error)=>{
 					console.log(error);
@@ -52,7 +78,27 @@
 		props: {
 	      menuList: Array,
 	      required: true
-	    }
+	    },
+	    components:{
+	    	swiper,
+    		swiperSlide
+	    },
+	    computed: {
+      		swiper() {
+       			 return this.$refs.mySwiper.swiper
+      		}
+    	},
+    	mounted() {
+    			const self = this;
+    	      // current swiper instance
+    	      //console.log('this is current swiper instance object', this.swiper)
+    	      // console.log(this.menuList);
+    	      this.swiper.slideTo(0, 1000, false)
+    	},
+    	created() {
+        	vm = this;
+    	}
+
 	}
 </script>
 
@@ -90,5 +136,26 @@
 	    opacity: 1;
 	  }
 	}
+	.swiper-container {
+      width: 100%;
+      height: 100%;
+    }
+    .swiper-slide {
+      text-align: center;
+      font-size: 13px;
+      /* Center slide text vertically */
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-box-pack: center;
+      -ms-flex-pack: center;
+      -webkit-justify-content: center;
+      justify-content: center;
+      -webkit-box-align: center;
+      -ms-flex-align: center;
+      -webkit-align-items: center;
+      align-items: center;
+    }
 	
 </style>
