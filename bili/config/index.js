@@ -28,7 +28,14 @@ module.exports = {
               //     '^/v4/api': '/v4/api'
               //   }
 
-          }
+          },
+        "/api/proxy": {
+              target: 'http://172.18.12.14:3000',
+              host: '172.18.12.14',
+              changeOrigin:true,
+          },
+
+
 
     },
 

@@ -40,22 +40,26 @@
 				return 'https'+data.substring(4)+'@480w_300h.webp';
 			},
 			handleClick(data){
-				console.log(data)
-				
+				// console.log(data)
+				// axios.get(`https://comment.bilibili.com/recommendnew,${data.aid}`).then(res=>{				
+				// 	console.log(res)
+				// }).catch((error)=>{
+				// 	console.log(error);
+				// });
 
-				axios.get(`https://comment.bilibili.com/recommendnew,${data.aid}`).then(res=>{				
-					
-					console.log(res)
-					
+				//通过后台获取myID参数
+				axios.post('/api/proxy/detail/https',{url:`https://www.bilibili.com/video/av${data.aid}/?redirectFrom=h5`}).then(res=>{				
+					// console.log('index res',res)
+					localStorage.setItem('myID',res.data.rid);
+					localStorage.setItem('myAID',JSON.stringify(data.aid))
+					this.$router.push(`/video/av${data.aid}`);
 					
 				}).catch((error)=>{
-					console.log(error);
+					console.log('index error',error);
 				});
 
 
-				localStorage.setItem('myID',28)
-				localStorage.setItem('myAID',JSON.stringify(data.aid))
-				this.$router.push(`/video/av${data.aid}`);
+				
 
 			}
 		},
