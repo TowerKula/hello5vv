@@ -34,9 +34,6 @@ module.exports = {
              headers:{
                 Referer:''
               }
-             
-          }
-
 
           },
         "/api/proxy": {
@@ -105,3 +102,4 @@ module.exports = {
     bundleAnalyzerReport: process.env.npm_config_report
   }
 
+}

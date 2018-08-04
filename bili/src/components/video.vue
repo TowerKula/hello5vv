@@ -8,10 +8,15 @@
 		</div>
 		<div id="box">
 			<h1>可试看6分钟，APP内打开看全片</h1>
+
 			<h2><p>{{videoinfo.title}}</p><a :class="icon" @click='downClick()' ></a></h2>
+	  		
 	  		<h3>{{videoinfo.author}}<span>{{times(videoinfo.play)}}万次观看</span><span>{{videoinfo.video_review}}弹幕</span><span>{{createDate(videoinfo.create)}}</span></h3>
-	  		<h4>{{videoinfo.description}}</h4>
-	  		<p><span class="iconfont icon-shoucang first"></span> 收藏 <span class="iconfont icon-huancun"></span> 缓存 <span class="iconfont icon-zanzhuanhuan0101"></span> 分享</p>
+	  		
+	  		<div :class="isshow ? 'notShow' : 'show'">
+	  			<h4>{{videoinfo.description}}</h4>
+	  			<p><span class="iconfont icon-shoucang first" @click='icoClick()'> 收藏</span>  <span class="iconfont icon-huancun" @click='icoClick()'> 缓存</span>  <span class="iconfont icon-zanzhuanhuan0101" @click='icoClick()'> 分享</span> </p>
+	  		</div>
 	  	</div>
 
 	  	<ul id="list">
@@ -46,7 +51,8 @@
 				myID:JSON.parse(localStorage.myID),
 				myAID:JSON.parse(localStorage.myAID),
 				icon:'iconfont icon-down',
-				isIcon:true
+				isIcon:true,
+				isshow:false
 			}
 		},
 		mounted(){
@@ -102,6 +108,10 @@
 				alert('请下载APP再使用')
 			},
 
+			icoClick(){
+				alert('请登录再使用')
+			},
+
 			downClick(){
 				this.isIcon = !this.isIcon
 				if (this.isIcon) {
@@ -109,12 +119,10 @@
 				}else{
 					this.icon = 'iconfont icon-top'
 				}
-				
+
+				this.isshow = !this.isshow;
 				
 			}
-
-
-
 		},
 
 		computed:{
@@ -141,6 +149,10 @@
 	#box h2 a{float: right;}
 	#box h3{font-size: 14px;color: #111;margin-top: 10px;}
 	#box h3 span{font-size: 14px;color: #999;margin-left: 10px;}
+
+	#box div{}
+	.notShow{ display: none; }
+	.show{ display: block; }
 	#box h4{font-size: 14px;color: #999;margin-top: 10px;}
 	#box p{margin-top: 10px;color: #aaa; font-size: 12px;}
 	#box p span{margin-left: 25px;}
