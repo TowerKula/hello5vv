@@ -1,22 +1,21 @@
 <template>
 	<div v-if="videoinfo">
 		<div id="videoControl">
-			<img :src="videoinfo.pic" alt="">
-			<p></p>
+			<img :src="videoinfo.pic" alt="" class="blur">
 			<span class="top">av{{videoinfo.aid}}</span>
 			<span class="left">{{videoinfo.duration}}</span>
 			<span class="right iconfont icon-bofang"></span>
 		</div>
 		<div id="box">
 			<h1>可试看6分钟，APP内打开看全片</h1>
-			<h2><span>{{videoinfo.title}}</span><a class="iconfont icon-down"></a></h2>
+			<h2><p>{{videoinfo.title}}</p><a :class="icon" @click='downClick()' ></a></h2>
 	  		<h3>{{videoinfo.author}}<span>{{times(videoinfo.play)}}万次观看</span><span>{{videoinfo.video_review}}弹幕</span><span>{{createDate(videoinfo.create)}}</span></h3>
 	  		<h4>{{videoinfo.description}}</h4>
 	  		<p><span class="iconfont icon-shoucang first"></span> 收藏 <span class="iconfont icon-huancun"></span> 缓存 <span class="iconfont icon-zanzhuanhuan0101"></span> 分享</p>
 	  	</div>
 
 	  	<ul id="list">
-	  		<li v-for="info in datalist">
+	  		<li v-for="info in datalist" @click='handleClick()'>
 	  			<b>
 	  				<img :src="reverUrl(info.pic)" alt="">
 	  				<span>{{number(info.duration)}}</span>
@@ -45,7 +44,9 @@
 				datalist:[],
 				newVideoInfo:null,
 				myID:JSON.parse(localStorage.myID),
-				myAID:JSON.parse(localStorage.myAID)
+				myAID:JSON.parse(localStorage.myAID),
+				icon:'iconfont icon-down',
+				isIcon:true
 			}
 		},
 		mounted(){
@@ -96,6 +97,22 @@
 				return reg;
 			},
 
+			handleClick(){
+				alert('请下载APP再使用')
+			},
+
+			downClick(){
+				this.isIcon = !this.isIcon
+				if (this.isIcon) {
+					this.icon = 'iconfont icon-down'
+				}else{
+					this.icon = 'iconfont icon-top'
+				}
+				
+				
+			}
+
+
 
 		},
 
@@ -111,15 +128,15 @@
 
 	.clearup{clear: both;}
 	#videoControl{position: relative;}
-	#videoControl p{position: absolute;top:0;left:0;right:0;bottom:0;background:rgba(60,60,60,0.8);z-index: 1;}
+	#videoControl .blur{-webkit-filter: blur(10px);filter: progid:DXImageTransform.Microsoft.Blur(PixelRadius=10, MakeShadow=false);}
 	#videoControl img{width: 100%;}
 	#videoControl .top{position:absolute;top: 10px;left: 50%;transform: translate(-50%);color: #fff;font-size: 18px;z-index: 2;}
-	#videoControl .left{position: absolute;bottom: 20px;left: 10px;display: inline-block;height: 20px;width: 80px;background:rgba(33,33,33,.3);color: white;font-size: 16px;text-align: center;line-height: 20px;border-radius: 2px;z-index: 2;}
+	#videoControl .left{position: absolute;bottom: 20px;left: 10px;display: inline-block;height: 20px;width: 80px;background:rgba(33,33,33,.3);color: #d4d6d9;font-size: 16px;text-align: center;line-height: 20px;border-radius: 2px;z-index: 2;border:1px solid #d4d6d9;}
 	#videoControl .right{position: absolute;bottom: 20px;right: 10px;font-size: 50px;color: #ccc;z-index: 2;}
 	#box {padding: 10px;}
 	#box h1{background: #fb7299;width:100%;height: 50px;font-size: 20px;color: #fff;line-height: 50px;text-align: center; border-radius: 20px;}
 	#box h2{margin-top: 10px;display: flex;justify-content:space-between;}
-	#box h2 span{font-size: 16px;color: #000;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;width: 80%;}
+	#box h2 p{font-size: 16px;color: #000;overflow: hidden;text-overflow:ellipsis;white-space: nowrap;width: 80%;}
 	#box h2 a{float: right;}
 	#box h3{font-size: 14px;color: #111;margin-top: 10px;}
 	#box h3 span{font-size: 14px;color: #999;margin-left: 10px;}
