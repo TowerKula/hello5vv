@@ -46,21 +46,19 @@
 		},
 		methods:{
 			menuClick(mydata){
-
+				console.log(mydata.menuValue)
 				//触发自定义事件kerwineven	
-
-				localStorage.setItem('myID',JSON.stringify(this.$route.params.nums))
-				
-
-				
-	
-
-				this.$router.push(`/channel/${mydata.menuKey}`)		
-
+				if (mydata.menuValue === "推荐") {
+					this.$router.push(`/recommend/${mydata.menuKey}`)	
+				}else{
+					localStorage.setItem('myID',JSON.stringify(this.$route.params.nums))
+					this.$router.push(`/channel/${mydata.menuKey}`)	
+				}					
 				axios.get(`/x/web-interface/ranking/region?rid=${mydata.menuKey}&day=7&jsonp=jsonp`).then(res=>{				
 					this.hotInfo = res.data.data.slice(0,4);
 					// console.log(this.hotInfo)
 					this.$store.dispatch('msgMenuFn',this.hotInfo);	
+
 					
 				}).catch((error)=>{
 					console.log(error);

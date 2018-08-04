@@ -16,6 +16,7 @@
 </template>
 
 <script type="text/javascript">
+	import {mapState} from "vuex";
 	import menubar from "./menubar"
 	import axios from "axios";
 	export default {		
@@ -143,7 +144,9 @@
 					}
 				},
 				hotInfo:'',
-				newInfo:''
+				newInfo:'',
+				allInfo:[],
+				allInfoName:[]
 
 
 				}
@@ -156,24 +159,42 @@
 		methods:{	
 			channelClick(data){
 				// console.log(data)
+				console.log(data)
+				this.allInfo = []
 				if (data.key==='index') {
 					this.$router.push(`/index`);
 				}else{
 					this.secondBar = data.key
-					this.$router.push(`/channel/${data.key}`);
-					axios.get(`/x/web-interface/ranking/region?rid=${this.$route.params.nums}&day=7&jsonp=jsonp`).then(res=>{				
-						this.hotInfo = res.data.data.slice(0,4);
-						// console.log(this.hotInfo)
-						this.$store.dispatch('msgMenuFn',this.hotInfo);	
-						this.$store.dispatch('sideNumAction',data.key)
-					}).catch((error)=>{
-						console.log(error);
-					});
+					this.$router.push(`/recommend/${data.key}`);
+					this.$store.dispatch('sideNumAction',data.menu)
+					for (var i = 1; i < data.menu.length; i++) {
 
+						this.allInfoName.push(data.menu[i].menuValue);
+						axios.get(`/x/web-interface/ranking/region?rid=${data.menu[i].menuKey}&day=7&jsonp=jsonp`).then(res=>{				
+						this.hotInfo = res.data.data.slice(0,4);
+						this.allInfo.push(this.hotInfo)
+						this.$store.dispatch('msgMenuFn',this.hotInfo);	
+						
+						}).catch((error)=>{
+							console.log(error);
+						});
+						
+					}
+					console.log('11111',this.allInfoName)
+					this.$emit("childByValue",{"allinfo":this.allInfo,"allInfoName":this.allInfoName})
+
+					// axios.get(`/x/web-interface/ranking/region?rid=${this.$route.params.nums}&day=7&jsonp=jsonp`).then(res=>{				
+					// 	this.hotInfo = res.data.data.slice(0,4);
+					// 	this.$store.dispatch('msgMenuFn',this.hotInfo);	
+					// 	
+					// }).catch((error)=>{
+					// 	console.log(error);
+					// });
 				}
 			}
 		},
 		computed:{
+			...mapState(["menuMsg","menuNew","sideNum"]),
 			setSecondBar(){
 				return this.sideMap[this.secondBar].menu;
 
