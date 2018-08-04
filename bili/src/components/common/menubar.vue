@@ -40,6 +40,10 @@
 
 		methods:{
 			menuClick(mydata){
+
+				//触发自定义事件kerwineven	
+				
+	
 				this.$router.push(`/channel/${mydata.menuKey}`)		
 
 				axios.get(`/x/web-interface/ranking/region?rid=${mydata.menuKey}&day=7&jsonp=jsonp`).then(res=>{				
