@@ -34,8 +34,6 @@ module.exports = {
              headers:{
                 Referer:''
               }
-             
-          
 
 
           },
