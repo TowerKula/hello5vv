@@ -9,7 +9,7 @@
 			    </li>
 				
 			</ul>
-			<menubar :menuList='setSecondBar' ></menubar>
+			<menubar  ></menubar>
 			
 	</aside>
 	</transition>
@@ -159,17 +159,18 @@
 		methods:{	
 			channelClick(data){
 				// console.log(data)
-				console.log(data)
 				this.allInfo = []
+				this.allInfoName = []
+				document.documentElement.scrollTop = document.body.scrollTop = 0;
 				if (data.key==='index') {
 					this.$router.push(`/index`);
 				}else{
-					this.secondBar = data.key
-					this.$router.push(`/recommend/${data.key}`);
+					this.secondBar = data.key;
 					this.$store.dispatch('sideNumAction',data.menu)
-					for (var i = 1; i < data.menu.length; i++) {
+					for (var i = 0; i < data.menu.length; i++) {
 
 						this.allInfoName.push(data.menu[i].menuValue);
+
 						axios.get(`/x/web-interface/ranking/region?rid=${data.menu[i].menuKey}&day=7&jsonp=jsonp`).then(res=>{				
 						this.hotInfo = res.data.data.slice(0,4);
 						this.allInfo.push(this.hotInfo)
@@ -180,22 +181,23 @@
 						});
 						
 					}
-					console.log('11111',this.allInfoName)
-					this.$emit("childByValue",{"allinfo":this.allInfo,"allInfoName":this.allInfoName})
+					// console.log('111',this.allInfo)
+					// this.$emit("childByValue",{"allinfo":this.allInfo,"allInfoName":this.allInfoName})
+					 // window.localStorage.setItem("allinfo",this.allInfo);
+					 // window.localStorage.setItem("allInfoName",this.allInfoName);
 
-					// axios.get(`/x/web-interface/ranking/region?rid=${this.$route.params.nums}&day=7&jsonp=jsonp`).then(res=>{				
-					// 	this.hotInfo = res.data.data.slice(0,4);
-					// 	this.$store.dispatch('msgMenuFn',this.hotInfo);	
-					// 	
-					// }).catch((error)=>{
-					// 	console.log(error);
-					// });
+					this.$store.dispatch('allInfoAction',this.allInfo);	
+					this.$store.dispatch('allInfoNameAction',this.allInfoName);	
+
+					this.$router.push(`/recommend/${data.key}`);
 				}
 			}
 		},
 		computed:{
 			...mapState(["menuMsg","menuNew","sideNum"]),
 			setSecondBar(){
+
+				// console.log('second',this.sideMap[this.secondBar].menu);
 				return this.sideMap[this.secondBar].menu;
 
 			}

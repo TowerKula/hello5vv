@@ -16,7 +16,9 @@ const store = new Vuex.Store({
 		avDetail:'',
 		numsDetail:'',
 		rankId:null,
-		sideNum:null//sidebar的点击key值
+		sideNum:null,//sidebar的点击key值
+		allInfo:[],
+		allInfoName:[]
 		
 	},
 	actions:{
@@ -55,6 +57,12 @@ const store = new Vuex.Store({
 		},
 		sideNumAction(store,payload){
 			store.commit('sideNumMutation',payload);
+		},
+		allInfoAction(store,payload){
+			store.commit('allInfoMutation',payload);
+		},
+		allInfoNameAction(store,payload){
+			store.commit('allInfoNameMutation',payload);
 		}
 	},
 
@@ -92,6 +100,14 @@ const store = new Vuex.Store({
 		sideNumMutation(state,payload){
 			// console.log(payload)
 			state.sideNum = payload;
+		},
+		allInfoMutation(state,payload){
+			// console.log(payload)
+			state.allInfo = payload;
+		},
+		allInfoNameMutation(state,payload){
+			// console.log(payload)
+			state.allInfoName = payload;
 		}
 
 

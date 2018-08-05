@@ -49,7 +49,7 @@ export default new Router({
         path:"/login",
         component:login
       },
-      {//登录-覃
+      {//登录-liu
         path:"/recommend/:nums",
         component:recommend
       },

@@ -1,16 +1,16 @@
 <template>
 	<div>
 		<navbar></navbar>
-		<sidebar v-on:childByValue="childByValue"></sidebar>
+		<sidebar ></sidebar>
 		 
 		<div class="main">
 
 
-			<div class="other" >
+			<div v-for='data,index in allInfoName' >
 				
-				<h2 class="title newVideo">最新视频</h2>
+				<h2 class="title newVideo">{{data}}</h2>
 				<ul class="newList">
-					<li v-for='data,index in getMsg' @click='videoDetailClick(data)'>								
+					<li v-for='data,index in allInfo[index]' @click='videoDetailClick(data)'>								
 							<div class="play">
 								<img :src="reverUrl(data.pic)" width="100%">
 								<div class="play-bottom">
@@ -55,14 +55,11 @@
 				menuNews:[],
 				nowPage:0,
 				newInfo:'',
-				hotInfo:'',
-				allInfo:'',
-				allInfoName:''				
+				hotInfo:''				
 			}
 		},
 		mounted(){
-				
-
+				console.log(allInfoName);
 				// axios.get(`/x/web-interface/ranking/region?rid=${this.$route.params.nums}&day=7&jsonp=jsonp`).then(res=>{				
 				// 	this.hotInfo = res.data.data.slice(0,4);
 				// 	// console.log(this.hotInfo)
@@ -89,7 +86,7 @@
 			sidebar
 		},
 		computed:{
-			...mapState(["menuMsg","menuNew","sideNum"]),
+			...mapState(["menuMsg","menuNew","sideNum","allInfoName","allInfo"]),
 			
 			getMsg(){	
 				if (this.nowPage != this.$route.params.nums) {
@@ -127,13 +124,14 @@
 			recommend(){
 				console.log(sideNum)
 				return false
-			},
-			childByValue: function (childValue) {
-		        // childValue就是子组件传过来的值
-		        console.log(childValue)
-		        this.allInfo = childValue.allInfo
-		        this.allInfoName = childValue.allInfoName
-		     }
+			}
+			// childByValue: function (childValue) {
+		 //        // childValue就是子组件传过来的值
+		 //        this.allInfo = childValue.allinfo
+		 //        this.allInfoName = childValue.allInfoName
+		 //        // console.log(this.allInfo)
+		 //        // console.log(this.allInfoName)
+		 //     }
 
 
 		}
@@ -142,8 +140,8 @@
 </script>
 
 <style scoped lang="scss">
-	.main{overflow: hidden;
-		.title{ margin-top: 170px;color: #212121;font-size: 16px;margin-left: 10px;height: 40px;line-height: 40px;}
+	.main{overflow: hidden;margin-top: 150px;
+		.title{ color: #212121;font-size: 16px;margin-left: 10px;height: 40px;line-height: 40px;}
 		ul{ 
 			li{width: 50%;height: 180px; float: left;box-sizing: border-box;padding:5px 5px 0 10px;
 				.play{position: relative;
@@ -163,7 +161,7 @@
 				p{height: 40px; font-size: 14px;overflow: hidden;}
 			}
 		}
-		.newVideo{clear: both; margin-top: 50px;}
+		.newVideo{clear: both;}
 		.newList{position: relative;overflow: hidden;}
 		.add{height: 50px;width: 100%; background: red;position: absolute;}
 	}

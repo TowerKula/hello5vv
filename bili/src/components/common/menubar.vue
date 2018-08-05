@@ -4,10 +4,11 @@
 	<aside>
 
 			<swiper :options="swiperOption" ref="mySwiper" >
-			    <swiper-slide v-for="(mydata,myindex) in menuList" :key="mydata.menuKey" > 
+			    <swiper-slide v-for="(mydata,myindex) in sideNum" :key="mydata.menuKey" > 
 					{{mydata.menuValue}}
 			    </swiper-slide>
 			  </swiper>
+			
 	</aside>
 	</transition>
 </template>
@@ -16,6 +17,7 @@
 	import axios from "axios";
 	import { swiper, swiperSlide } from 'vue-awesome-swiper';
 	import 'swiper/dist/css/swiper.css' ;
+	import {mapState} from "vuex"; 
 	let vm = null;
 	export default {
 		name:"menubar",
@@ -33,20 +35,19 @@
       					  on:{
       					  	click:function(){
       					  		// console.log('the this',this.clickedIndex);
-      					  		vm.menuClick(vm.menuList[this.clickedIndex]);
+      					  		vm.menuClick(vm.sideNum[this.clickedIndex]);
       					  	}
       					  }
 				},
-				test:'333'
+				// menuList:[]
 
 			}
 		},
-		mounted(){
-				
-		},
+		
 		methods:{
 			menuClick(mydata){
-				console.log(mydata.menuValue)
+				// console.log(mydata)
+				// console.log(mydata.menuKey)
 				//触发自定义事件kerwineven	
 				if (mydata.menuValue === "推荐") {
 					this.$router.push(`/recommend/${mydata.menuKey}`)	
@@ -61,7 +62,7 @@
 
 					
 				}).catch((error)=>{
-					console.log(error);
+					// console.log(error);
 				});
 
 				
@@ -71,12 +72,12 @@
 					this.$store.dispatch('msgMenuNew',this.newInfo);	
 					
 				}).catch((error)=>{
-					console.log(error);
+					// console.log(error);
 				});
 			}
 		},
 		props: {
-	      menuList: Array,
+	      // menuList: Array,
 	      required: true
 	    },
 	    components:{
@@ -84,16 +85,18 @@
     		swiperSlide
 	    },
 	    computed: {
+	    	...mapState(["sideNum"]),
       		swiper() {
        			 return this.$refs.mySwiper.swiper
       		}
     	},
     	mounted() {
     			const self = this;
+    			// self.menuList = self.$store.state.sideNum;
     	      // current swiper instance
     	      //console.log('this is current swiper instance object', this.swiper)
     	      // console.log(this.menuList);
-    	      this.swiper.slideTo(0, 1000, false)
+    	      this.swiper.slideTo(0, 1000, false);
     	},
     	created() {
         	vm = this;
