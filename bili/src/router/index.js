@@ -9,6 +9,7 @@ import search from '../components/search'//搜索-覃
 import space from '../components/person/space'//登录注册-覃
 import register from '../components/person/register'//注册-覃
 import login from '../components/person/login'//登录-覃
+import recommend from '../components/recommend'
 
 //路由配置文件
 Vue.use(Router) //注册路由模块
@@ -48,6 +49,10 @@ export default new Router({
         path:"/login",
         component:login
       },
+      {//登录-覃
+        path:"/recommend/:nums",
+        component:recommend
+      },
   		//重定向
   		{
   			path:"*", //匹配所有的路径
@@ -55,7 +60,7 @@ export default new Router({
   		},
       {
         path:"/ranking",
-        redirect:"/ranking"
+        redirect:"/ranking/0"
       }
       
 

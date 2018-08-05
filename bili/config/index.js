@@ -35,6 +35,7 @@ module.exports = {
                 Referer:''
               }
 
+
           },
         "/api/proxy": {
               target: 'http://172.18.12.14:3000',
@@ -101,5 +102,5 @@ module.exports = {
     // Set to `true` or `false` to always turn it on or off
     bundleAnalyzerReport: process.env.npm_config_report
   }
-
 }
+
