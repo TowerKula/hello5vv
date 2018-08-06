@@ -5,8 +5,8 @@
 			
 			<img :src="bannerTop" >
 			<div class='center'>
-				<div class='fl'>注册</div>
-				<div class='fr'>登录</div>
+				<div class='fl btn'>注册</div>
+				<div class='fr btn'>登录</div>
 			</div>
 		</div>
 	</div>
@@ -28,20 +28,44 @@
 <style lang="scss" scoped>
 	img{
 		width:100%;
-
 	}	
 	.container{
-		margin-top:40px;
+		overflow:hidden;
+		margin-top:50px;
 		position:relative;
 	}
 	.center{
 
 		width:200px;
 		position:absolute;
-		top:50%;
+		top:60%;
 		left:50%;
-		transform:translate(-50%,-50%);
+		transform:translate(-50%);
 	}
+	.btn {
+		width:80px;
+		height:25px;
+		text-align:center;
+		line-height:25px;
+		
+		border-radius:5px;
+		font-size:13px;
+	}
+	.fl{
+		float:left;
+	}
+	.fr{
+		float:right;
+	}
+	.fl.btn{
+		background-color: white;
+		color: #fb7299;
+	}
+	.fr.btn{
+		background-color: #fb7299;
+		color:white;
+	}
+
 
 
 </style>

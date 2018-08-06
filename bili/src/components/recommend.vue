@@ -1,14 +1,14 @@
 <template>
 	<div>
 		<navbar></navbar>
-		<sidebar ></sidebar>
+		<sidebar></sidebar>
 		 
 		<div class="main">
 
 
 			<div v-for='data,index in allInfoName' >
 				
-				<h2 class="title newVideo">{{data}}</h2>
+				<h2 class="title newVideo">{{data}} <template v-if="data == '推荐'" ><router-link tag='a' :to='getRankingUrl' class='ranking'>排行榜</router-link></template></h2>
 				<ul class="newList">
 					<li v-for='data,index in allInfo[index]' @click='videoDetailClick(data)'>								
 							<div class="play">
@@ -59,7 +59,8 @@
 			}
 		},
 		mounted(){
-				console.log(allInfoName);
+
+				//console.log(this.$route.params.nums);
 				// axios.get(`/x/web-interface/ranking/region?rid=${this.$route.params.nums}&day=7&jsonp=jsonp`).then(res=>{				
 				// 	this.hotInfo = res.data.data.slice(0,4);
 				// 	// console.log(this.hotInfo)
@@ -102,6 +103,9 @@
 				}
 				// console.log('xiu',this.menuNews.length)
 				return this.menuNews ;
+			},
+			getRankingUrl(){
+				return "/ranking/"+this.$route.params.nums;
 			}
 		},
 		methods:{
@@ -164,6 +168,10 @@
 		.newVideo{clear: both;}
 		.newList{position: relative;overflow: hidden;}
 		.add{height: 50px;width: 100%; background: red;position: absolute;}
+		.ranking{
+			float:right;
+			color:#ffa726;
+		}
 	}
 	
 </style>

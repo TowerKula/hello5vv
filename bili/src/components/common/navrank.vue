@@ -20,11 +20,11 @@
 						key:1,
 						value:"动画"
 					},
-					33:{
+					13:{ //此处参数不匹配
 						key:33,
 						value:"番剧"
 					},
-					168:{
+					167:{//此处参数不匹配
 						key:168,
 						value:"国创"
 					},
@@ -55,7 +55,7 @@
 					4:{
 						key:4,
 						value:"游戏"
-					},
+					}
 					// 23:{
 					// 	key:23,
 					// 	value:"电影"
@@ -96,6 +96,9 @@
 			}
 		},
 		computed:{
+		},
+		mounted(){
+			this.handleClick(this.ranking[this.$route.params.nums]);
 		}
 	}
 </script>
