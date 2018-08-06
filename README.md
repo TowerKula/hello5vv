@@ -4,8 +4,14 @@ Most technology that  you can find in https://cn.vuejs.org.
 
 we'll use some plugins like vuex and router.
 
-edit by kong3
+we also need a node project spider for spide some info.
 
-edit by jiang
+if any question ,you can contact 
 
-edit by liu
+ kong3
+
+jiang
+
+liu
+
+edit by qsl
