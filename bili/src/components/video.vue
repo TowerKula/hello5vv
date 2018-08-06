@@ -13,10 +13,12 @@
 	  		
 	  		<h3>{{videoinfo.author}}<span>{{times(videoinfo.play)}}万次观看</span><span>{{videoinfo.video_review}}弹幕</span><span>{{createDate(videoinfo.create)}}</span></h3>
 	  		
-	  		<div :class="isshow ? 'notShow' : 'show'">
-	  			<h4>{{videoinfo.description}}</h4>
-	  			<p><span class="iconfont icon-shoucang first" @click='icoClick()'> 收藏</span>  <span class="iconfont icon-huancun" @click='icoClick()'> 缓存</span>  <span class="iconfont icon-zanzhuanhuan0101" @click='icoClick()'> 分享</span> </p>
-	  		</div>
+	  		<transition name="fade">
+	  			<div v-if="isshow" >
+	  				<h4>{{videoinfo.description}}</h4>
+	  				<p><span class="iconfont icon-shoucang first" @click='icoClick()'> 收藏</span>  <span class="iconfont icon-huancun" @click='icoClick()'> 缓存</span>  <span class="iconfont icon-zanzhuanhuan0101" @click='icoClick()'> 分享</span> </p>
+	  			</div>
+	  		</transition>
 	  	</div>
 
 	  	<ul id="list">
@@ -150,9 +152,12 @@
 	#box h3{font-size: 14px;color: #111;margin-top: 10px;}
 	#box h3 span{font-size: 14px;color: #999;margin-left: 10px;}
 
-	#box div{}
-	.notShow{ display: none; }
-	.show{ display: block; }
+	.fade-enter-active, .fade-leave-active {transition: all .2s;}
+
+	.notShow{ height:0; display:none }
+	.show{height:100%;display:block;}
+
+
 	#box h4{font-size: 14px;color: #999;margin-top: 10px;}
 	#box p{margin-top: 10px;color: #aaa; font-size: 12px;}
 	#box p span{margin-left: 25px;}
