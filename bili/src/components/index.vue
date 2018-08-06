@@ -3,9 +3,12 @@
 	  <navbar></navbar>
 	  <sidebar></sidebar>
 
-	  <ul>
+	  <ul v-infinite-scroll="loadMore"
+  		  infinite-scroll-disabled="loading"
+  		  infinite-scroll-distance="10"
+  		  infinite-scroll-immediate-check="false">
 
-	  		<li v-for="data in datalist" @click="handleClick(data)">
+	  		<li v-for="data in dataNew" @click="handleClick(data)">
 	  			<img :src="reverUrl(data.pic)" alt="">
 	  			<div class="under">
 	  				<span >{{data.duration}}</span>
@@ -31,14 +34,21 @@
 		data(){
 			return {
 				datalist:[],
+				dataNew:[],
+				loading:false,
+				current:20,//第几页
+				total:0//总页面
 			}
 		},
 		mounted(){
 			axios.get("/x/web-interface/ranking?rid=0&day=3&jsonp=jsonp").then(res=>{
-				// console.log(res.data);
+				console.log(res.data);
 				this.datalist = res.data.data.list
-				// console.log(res.data.data.list)
+				this.dataNew = this.datalist.slice(0, 19)
+				
 			})
+			
+			
 		},
 		methods:{
 			reverUrl(data){
@@ -63,7 +73,7 @@
 				}).catch((error)=>{
 					console.log('index error',error);
 				});
-				
+
 
 
 				
@@ -78,6 +88,24 @@
 				}else{
 					return n
 				}
+			},
+			loadMore(){
+				console.log("到底了")
+				// 再次请求数据
+				this.current += 20;
+				if(this.current>this.datalist.length){
+					//禁用loading
+					this.loading = true;
+					return //不在请求
+				}
+
+				axios.get(`/x/web-interface/ranking?rid=0&day=3&jsonp=jsonp`).then(res=>{
+					console.log(res.data);
+
+					this.dataNew= this.datalist.slice(0, this.current) //合并数组
+
+					
+				})
 			}
 		},
 		components:{
