@@ -7,10 +7,10 @@
 
 	  		<li v-for="data in datalist" @click="handleClick(data)">
 	  			<img :src="reverUrl(data.pic)" alt="">
-	  			<div>
-	  				<span class="time">{{data.duration}}</span>
-	  				<span class="play">{{times(data.play)}}万观看</span>
-	  				<span class="review">{{math(data.video_review)}}弹幕</span>	  				
+	  			<div class="under">
+	  				<span >{{data.duration}}</span>
+	  				<span >{{times(data.play)}}万观看</span>
+	  				<span >{{math(data.video_review)}}弹幕</span>	  				
 	  			</div>
 	  			<p>{{data.title}}</p>
 	  		</li>
@@ -37,7 +37,7 @@
 			axios.get("/x/web-interface/ranking?rid=0&day=3&jsonp=jsonp").then(res=>{
 				// console.log(res.data);
 				this.datalist = res.data.data.list
-				console.log(res.data.data.list)
+				// console.log(res.data.data.list)
 			})
 		},
 		methods:{
@@ -63,6 +63,7 @@
 				}).catch((error)=>{
 					console.log('index error',error);
 				});
+				
 
 
 				
@@ -100,41 +101,34 @@
 			img{
 				width: 90%;
 				border-radius: 10px;
+				border: 1px solid #000;
 				margin: 0 auto;
 			}
+			div.under{
+				position: absolute;
+				bottom: 65px;
+				left: 8%;
+			
+			}
 			span{
+				border-radius: 5px;
 				font-size: 14px;
 				color: #fff;
-				background: rgba(0,0,0,.5);
+				background: rgba(0,0,0,.3);
+				padding: 0px 5px 0px 5px;
+				margin-right: 5px;
+
 			}	
-			span.time{
-				padding: 0px 5px 0px 5px;
-				position: absolute;
-				left: 30px;
-				top: 205px;
-				
-			}
-			span.play{
-				padding: 0px 5px 0px 5px;
-				position: absolute;
-				left: 83px;
-				top: 205px;	
-				
-			}
-			span.review{
-				padding: 0px 5px 0px 5px;
-				position: absolute;
-				left: 170px;
-				top: 205px;
-				
-			}			
 			p{
 				font-size: 14px;
 				width: 90%;
 				text-align: left;
 				margin: 0 auto;
 				padding: 15px 0px 20px 0px;
-
+				overflow: hidden;
+				word-break: break-all;
+				text-overflow: ellipsis;
+				white-space: nowrap;
 
 			}
 		}

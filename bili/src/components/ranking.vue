@@ -26,7 +26,7 @@
 					
 					<p class="author"><img src="../../static/img/ico_up.png" alt="" class="up">{{data.author}}</p>
 					<p class="play inline"><img src="../../static/img/ico_play.png" alt="" class="play">{{times(data.play)}}万</p>
-					<p class="play inline"><img src="../../static/img/ico_danmu.png" alt="" class="play">{{math(data.video_review)}}弹幕</p>
+					<p class="danmu outline"><img src="../../static/img/ico_danmu.png" alt="" class="danmu">{{math(data.video_review)}}弹幕</p>
 					
 				</div>
 			</li>
@@ -175,11 +175,10 @@
 					font-size:16px;
 					overflow: hidden;
 					word-break: break-all;
-					overflow:hidden; 
-					text-overflow:ellipsis;
-					display:-webkit-box; 
-					-webkit-box-orient:vertical;
-					-webkit-line-clamp:2; 
+					text-overflow: ellipsis;
+					display: -webkit-box; 
+					-webkit-box-orient: vertical;
+					-webkit-line-clamp: 2; 
 
 				}
 				
@@ -205,13 +204,32 @@
 				}
 				img.play{
 					position: absolute;
-					left: -48%;
-					top: 20%;
-					width: 32%
+					left: -29%;
+					top: 15%;
+					width: 25%
+				}
+				p.inline,p.outline{
+					display: inline-block;
+					position: relative;
+					font-size: 13px;
+					color: #999; 
 				}
 				p.inline{
-					display: inline-block;
+					width: 30%;
 				}
+				p.outline{
+					width: 40%;
+					position: relative;
+					margin-left: 5px;
+				}
+				img.danmu{
+					position: absolute;
+					left: -25%;
+					top: 18%;
+					width: 18%
+				}
+
+
 
 				 
 				
