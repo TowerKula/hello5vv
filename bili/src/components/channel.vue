@@ -81,7 +81,6 @@
 			}
 		},
 		mounted(){
-			this.$store.dispatch('msgMenuFn',this.$route.params.nums);	
 				axios.get(`/x/web-interface/ranking/region?rid=${this.$route.params.nums}&day=7&jsonp=jsonp`).then(res=>{	
 					this.hotInfo = res.data.data.slice(0,4);
 					// console.log(this.hotInfo)
