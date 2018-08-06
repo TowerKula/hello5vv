@@ -81,6 +81,7 @@
 			}
 		},
 		mounted(){
+			this.$store.dispatch('msgMenuFn',this.$route.params.nums);	
 				axios.get(`/x/web-interface/ranking/region?rid=${this.$route.params.nums}&day=7&jsonp=jsonp`).then(res=>{	
 					this.hotInfo = res.data.data.slice(0,4);
 					// console.log(this.hotInfo)
@@ -153,13 +154,13 @@
 			},
 			moreClick(){				
 				++this.moreNum
-				console.log(this.moreNum)			
+				// console.log(this.moreNum)			
 				axios.get(`/archive_rank/getarchiverankbypartion?jsonp=jsonp&tid=${this.$route.params.nums}&pn=${this.moreNum}`).then(res=>{				
 
 					this.menuNews=[...(this.menuNews),...(res.data.data.archives)]
 					
 				}).catch((error)=>{
-					console.log(error);
+					// console.log(error);
 				});
 			},
 			recommend(){
